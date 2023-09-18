@@ -34,11 +34,24 @@ All pages of the {{ SITENAME|striptags|e }} blog.
 
 <div class="row-fluid">
     <div class="span8 offset2">
-        <div class="accordion" id="accordion2">
+        <div class="recent-posts">
           {% for page in pages|sort(attribute="url") %}
-          <div>
-            <a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>
-          </div>
+
+            <div itemscope class="recent-posts-article">
+                <a href="{{ SITEURL }}/{{ page.url }}">
+                    {{ page.title }}
+                    {% if page.subtitle %}
+                    <small class="subtitle">
+                        {{ page.subtitle }}
+                    </small>
+                    {% endif %}
+                </a>
+                <div class="recent-posts-posted">
+                    posted in
+                    <a href="{{ SITEURL }}/{{ CATEGORIES_URL }}#{{ page.category.slug }}-ref">{{ page.category }}</a>
+                    <time itemprop="dateCreated" datetime="{{ page.date.isoformat() }}">{{ page.locale_date }}</time>
+                </div>
+            </div>
           {% endfor %}
         </div>
     </div>
