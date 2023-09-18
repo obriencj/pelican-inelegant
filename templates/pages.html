@@ -47,8 +47,7 @@ All pages of the {{ SITENAME|striptags|e }} blog.
                     {% endif %}
                 </a>
                 <div class="recent-posts-posted">
-                    posted in
-                    <a href="{{ SITEURL }}/{{ CATEGORIES_URL }}#{{ page.category.slug }}-ref">{{ page.category }}</a>
+                    posted at {{ page.url }}
                     <time itemprop="dateCreated" datetime="{{ page.date.isoformat() }}">{{ page.locale_date }}</time>
                 </div>
             </div>
