@@ -1,11 +1,21 @@
 
 
-img.right {
+a:has(> img.right), img.right {
     float: right;
     margin: 1em;
 }
 
-img.left {
+a:has(> img.left), img.left {
     float: left;
     margin: 1em;
+}
+
+a:has(> img) {
+    &:after {
+        display: none;
+        background: none;
+        height: 0px;
+        transition: none;
+        transform: none;
+    }
 }
