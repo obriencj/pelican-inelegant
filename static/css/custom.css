@@ -39,3 +39,7 @@ article a:hover {
 article :is(h1, h2, h3, h4) {
     clear: both;
 }
+
+article p:not(#list-of-translations):not(#post-share-links) a:not(.ampl) {
+    display: inline;
+}
