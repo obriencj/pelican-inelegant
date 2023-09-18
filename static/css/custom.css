@@ -1,21 +1,24 @@
 
 
-a:has(> img.right), img.right {
+img.right {
     float: right;
     margin: 1em;
 }
 
-a:has(> img.left), img.left {
+img.left {
     float: left;
     margin: 1em;
 }
 
-a:has(> img) {
+a {
+    text-decoration: none;
+    transition: text-decoration 0.5s;
     &:after {
         display: none;
-        background: none;
-        height: 0px;
         transition: none;
         transform: none;
+    }
+    &:hover {
+        text-decoration: underline;
     }
 }
