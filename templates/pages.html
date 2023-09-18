@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+All Pages · {{ super() }}
+{% endblock title %}
+
+{% block head_description %}
+All pages of the {{ SITENAME|striptags|e }} blog.
+{% endblock head_description %}
+
+{% block meta_tags_in_head %}
+{{ super() }}
+{% from '_includes/_defaults.html' import FEATURED_IMAGE, PAGES_URL with context %}
+<meta property="og:title" content="All Pages · {{ SITENAME|striptags|e }}"/>
+<meta name="twitter:title" content="All Pages · {{ SITENAME|striptags|e }}">
+<meta property="og:url" content="{{ SITEURL }}/{{ PAGES_URL }}" />
+<meta property="og:description" content="All Pages of the {{ SITENAME|striptags|e }} blog" />
+<meta name="twitter:description" content="All Pages of the {{ SITENAME|striptags|e }} blog">
+<meta property="og:site_name" content="{{ SITENAME|striptags|e }}" />
+<meta property="og:article:author" content="{{ AUTHOR }}" />
+{% if FEATURED_IMAGE %}
+<meta property="og:image" content="{{ FEATURED_IMAGE }}" />
+<meta name="twitter:image" content="{{ FEATURED_IMAGE }}" >
+{% endif %}
+{% endblock meta_tags_in_head %}
+
+{% block content %}
+{% from '_includes/_defaults.html' import PAGES_URL with context %}
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="{{ SITEURL }}/{{ PAGES_URL }}">All Pages</a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span8 offset2">
+        <div class="accordion" id="accordion2">
+          {% for page in pages %}
+          <div>
+            <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

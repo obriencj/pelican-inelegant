@@ -207,6 +207,12 @@ PROJECTS = [{
 {% set TAGS_URL = TAGS_URL %}
 {% endif %}
 
+{% if not PAGES_URL %}
+{% set PAGES_URL = 'pages.html' %}
+{% else %}
+{% set PAGES_URL = PAGES_URL %}
+{% endif %}
+
 {% if not CATEGORIES_URL %}
 {% set CATEGORIES_URL = 'categories.html' %}
 {% else %}
