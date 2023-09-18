@@ -41,5 +41,9 @@ article :is(h1, h2, h3, h4) {
 }
 
 article p:not(#list-of-translations):not(#post-share-links) a:not(.ampl) {
+    text-decoration: none;
+    color: #1863a1;
     display: inline;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
