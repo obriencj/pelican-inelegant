@@ -3,22 +3,28 @@
 img.right {
     float: right;
     margin: 1em;
+    display: block;
+    box-sizing: border-box;
 }
 
 img.left {
     float: left;
     margin: 1em;
+    display: block;
+    box-sizing: border-box;
 }
 
 a {
     text-decoration: none;
     transition: text-decoration 0.5s;
-    &:after {
-        display: none;
-        transition: none;
-        transform: none;
-    }
-    &:hover {
-        text-decoration: underline;
-    }
+}
+
+a:after {
+    display: none;
+    transition: none;
+    transform: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
