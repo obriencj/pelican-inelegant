@@ -43,8 +43,8 @@ const minifyJS = () => {
       "source/lunr/lunr.js",
       "source/clipboard/clipboard.js",
       "source/js/create-instagram-gallery.js",
-      "source/js/copy-to-clipboard.js",
       "source/js/lunr-search-result.js",
+      "!source/js/copy-to-clipboard.js"
   ])
     .pipe(concat("inelegant.js"))
     .pipe(terser())
@@ -66,6 +66,7 @@ const compileCSS = () => {
       "source/photoswipe/photoswipe.css",
       "source/photoswipe/default-skin/default-skin.css",
       "source/css/*.css",
+      "!source/css/code-copy.css"
   ])
     .pipe(postcss(plugins))
     .pipe(concat("inelegant.css"))
