@@ -17,7 +17,8 @@ RUN git clone \
 
 
 # Fetch and install theme
-COPY static templates /pelican/inelegant/
+COPY static/ /pelican/inelegant/static/
+COPY templates/ /pelican/inelegant/templates/
 RUN pelican-themes -i /pelican/inelegant
 
 

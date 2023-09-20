@@ -14,12 +14,12 @@ import terser from "gulp-terser";
 
 const compileBootstrapLess = () =>
   exec(
-    "node_modules/recess/bin/recess --compile static/bootstrap/bootstrap.less > source/css/bootstrap.css"
+    "node_modules/recess/bin/recess --compile source/bootstrap/bootstrap.less > source/css/bootstrap.css"
   );
 
 const compileResponsiveLess = () =>
   exec(
-    "node_modules/recess/bin/recess --compile static/bootstrap/responsive.less > source/css/bootstrap_responsive.css"
+    "node_modules/recess/bin/recess --compile source/bootstrap/responsive.less > source/css/bootstrap_responsive.css"
   );
 
 const pathProdCSS = path.join(
@@ -63,8 +63,8 @@ const compileCSS = () => {
   ];
   return src([
       "source/applause-button/applause-button.css",
-      "static/photoswipe/photoswipe.css",
-      "static/photoswipe/default-skin/default-skin.css",
+      "source/photoswipe/photoswipe.css",
+      "source/photoswipe/default-skin/default-skin.css",
       "source/css/*.css",
   ])
     .pipe(postcss(plugins))

@@ -7,7 +7,7 @@ gulp: dependencies
 	@npx gulp
 
 container: gulp
-	@podman build . --no-cache -f Containerfile \
+	@podman build . -f Containerfile \
 	  --tag 'pelican-inelegant:latest'
 
 
