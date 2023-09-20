@@ -11,6 +11,8 @@ on:
       - master
     paths:
       - Containerfile
+      - static/**
+      - templates/**
 
 
 jobs:
