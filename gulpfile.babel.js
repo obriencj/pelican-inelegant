@@ -66,7 +66,8 @@ const compileCSS = () => {
       "source/photoswipe/photoswipe.css",
       "source/photoswipe/default-skin/default-skin.css",
       "source/css/*.css",
-      "!source/css/code-copy.css"
+      "!source/css/code-copy.css",
+      "!source/css/code.css"
   ])
     .pipe(postcss(plugins))
     .pipe(concat("inelegant.css"))
