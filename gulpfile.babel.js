@@ -24,7 +24,7 @@ const compileResponsiveLess = () =>
 
 const pathProdCSS = path.join(
   __dirname,
-  "static/css/elegant.prod.9e9d5ce754.css"
+  "static/css/inelegant.css"
 );
 
 const rmProdCSS = (cb) => {
@@ -46,7 +46,7 @@ const minifyJS = () => {
       "source/js/copy-to-clipboard.js",
       "source/js/lunr-search-result.js",
   ])
-    .pipe(concat("elegant.prod.9e9d5ce754.js"))
+    .pipe(concat("inelegant.js"))
     .pipe(terser())
     .pipe(dest("static/js/"));
 };
@@ -68,7 +68,7 @@ const compileCSS = () => {
       "source/css/*.css",
   ])
     .pipe(postcss(plugins))
-    .pipe(concat("elegant.prod.9e9d5ce754.css"))
+    .pipe(concat("inelegant.css"))
     .pipe(dest("static/css/"));
 };
 
