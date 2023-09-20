@@ -12,92 +12,39 @@ import rfs from "rfs";
 import concat from "gulp-concat";
 import terser from "gulp-terser";
 
-const browserSync = browserSyncCreate();
-
-const path404 = path.join(__dirname, "documentation/output/404.html");
-const content_404 = () =>
-  fs.existsSync(path404) ? fs.readFileSync(path404) : null;
-
-const cleanOutput = () => exec("cd documentation && rm -rf outout/");
-
-const buildContent = () => exec("cd documentation && invoke build");
 const compileBootstrapLess = () =>
   exec(
-    "node_modules/recess/bin/recess --compile static/bootstrap/bootstrap.less > static/css/bootstrap.css"
+    "node_modules/recess/bin/recess --compile static/bootstrap/bootstrap.less > source/css/bootstrap.css"
   );
+
 const compileResponsiveLess = () =>
   exec(
-    "node_modules/recess/bin/recess --compile static/bootstrap/responsive.less > static/css/bootstrap_responsive.css"
+    "node_modules/recess/bin/recess --compile static/bootstrap/responsive.less > source/css/bootstrap_responsive.css"
   );
-
-const reload = (cb) => {
-  browserSync.init(
-    {
-      ui: {
-        port: 9002,
-      },
-      server: {
-        baseDir: "documentation/output",
-        serveStaticOptions: {
-          extensions: ["html"],
-        },
-      },
-      files: "documentation/output/*.html",
-      port: 9001,
-    },
-    (_, bs) => {
-      bs.addMiddleware("*", (_, res) => {
-        res.write(content_404());
-        res.end();
-      });
-    }
-  );
-  cb();
-};
-
-const watchFiles = () => {
-  watch(
-    [
-      "documentation/content/**/*.md",
-      "documentation/content/**/*.rest",
-      "documentation/pelicanconf.py",
-      "documentation/publishconf.py",
-      "templates/**/*.html",
-      "static/**/*.css",
-      "static/**/*.less",
-      "static/**/*.js",
-      "!static/**/bootstrap.css",
-      "!static/**/bootstrap_responsive.css",
-      "!static/**/elegant.prod.9e9d5ce754.css",
-      "!static/js/elegant.prod.9e9d5ce754.js",
-    ],
-    { ignoreInitial: false },
-    buildAll
-  );
-};
 
 const pathProdCSS = path.join(
   __dirname,
   "static/css/elegant.prod.9e9d5ce754.css"
 );
+
 const rmProdCSS = (cb) => {
   if (fs.existsSync(pathProdCSS)) {
     fs.unlinkSync(pathProdCSS);
   }
   cb();
 };
+
 const minifyJS = () => {
   return src([
-    "static/applause-button/applause-button.js",
-    "static/photoswipe/photoswipe.js",
-    "static/photoswipe/photoswipe-ui-default.js",
-    "static/photoswipe/photoswipe-array-from-dom.js",
-    "static/lunr/lunr.js",
-    "static/clipboard/clipboard.js",
-    "static/js/create-instagram-gallery.js",
-    "static/js/copy-to-clipboard.js",
-    "static/js/lunr-search-result.js",
-    "!static/js/elegant.prod.9e9d5ce754.js",
+      "source/applause-button/applause-button.js",
+      "source/photoswipe/photoswipe.js",
+      "source/photoswipe/photoswipe-ui-default.js",
+      "source/photoswipe/photoswipe-array-from-dom.js",
+      "source/lunr/lunr.js",
+      "source/clipboard/clipboard.js",
+      "source/js/create-instagram-gallery.js",
+      "source/js/copy-to-clipboard.js",
+      "source/js/lunr-search-result.js",
   ])
     .pipe(concat("elegant.prod.9e9d5ce754.js"))
     .pipe(terser())
@@ -115,11 +62,10 @@ const compileCSS = () => {
     }),
   ];
   return src([
-    "static/applause-button/applause-button.css",
-    "static/photoswipe/photoswipe.css",
-    "static/photoswipe/default-skin/default-skin.css",
-    "static/css/*.css",
-    "!static/css/elegant.prod.9e9d5ce754.css",
+      "source/applause-button/applause-button.css",
+      "static/photoswipe/photoswipe.css",
+      "static/photoswipe/default-skin/default-skin.css",
+      "source/css/*.css",
   ])
     .pipe(postcss(plugins))
     .pipe(concat("elegant.prod.9e9d5ce754.css"))
@@ -132,7 +78,6 @@ const buildAll = series(
   compileResponsiveLess,
   compileCSS,
   minifyJS,
-  buildContent
 );
 
 exports.validate = run("jinja-ninja templates");
@@ -151,11 +96,7 @@ const build = series(
   compileResponsiveLess,
   compileCSS,
   minifyJS,
-  cleanOutput,
-  buildContent
 );
 exports.build = build;
 
-const elegant = series(build, parallel(watchFiles, reload));
-exports.elegant = elegant;
-exports.default = elegant;
+exports.default = build;
