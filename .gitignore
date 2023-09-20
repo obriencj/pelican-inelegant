@@ -2,5 +2,7 @@
 .vscode
 .idea
 .history
+*~
+node_modules/
 static/css/elegant.prod.9e9d5ce754.css
 static/js/elegant.prod.9e9d5ce754.js
