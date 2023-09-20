@@ -1,0 +1,55 @@
+
+
+name: Build pelican container
+
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - Containerfile
+
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build image
+        id: build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: pelican-inelegant
+          tags: latest
+          oci: true
+          containerfiles: |
+            Containerfile
+
+      - name: Publish image
+        id: publish
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build.outputs.image }}
+          tags: ${{ steps.build.outputs.tags }}
+          registry: ghcr.io/obriencj
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          extra-args: |
+            --disable-content-trust
+
+      - name: Results
+        run: |
+          echo "${{ toJSON(steps.publish.outputs) }}"
+
+
+# The end.
