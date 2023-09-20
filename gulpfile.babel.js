@@ -1,8 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { src, dest, watch, parallel, series } from "gulp";
+import { src, dest, parallel, series } from "gulp";
 import { exec } from "child_process";
-import { create as browserSyncCreate } from "browser-sync";
 import run from "gulp-run-command";
 import postcss from "gulp-postcss";
 import magician from "postcss-font-magician";
