@@ -1,6 +1,10 @@
 FROM python:3.9
 
 
+# Need this for the pelican-image-process plugin
+RUN apt-get update ; apt-get install -y exiftool
+
+
 # Install pelican and available plugins
 RUN pip3 install \
   pelican[markdown] \
