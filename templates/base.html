@@ -31,6 +31,12 @@
         {% else %}
         <meta name="author" content="{{ AUTHOR }}" />
         {% endif %}
+        {% if COPYRIGHT %}
+        <meta name="copyright" content="{{ COPYRIGHT }}" />
+        {% endif %}
+        {% if LICENSE_NAME %}
+        <meta name="license" content="{{ LICENSE_NAME }}" />
+        {% endif %}
 
         {% from '_includes/_defaults.html' import SITE_DESCRIPTION with context %}
         {% if SITE_DESCRIPTION %}
@@ -51,7 +57,7 @@
         {% endblock feed_links %}
         {% include '_includes/analytics.html' %}
     </head>
-    <body>
+    <body vocab="http://purl.org/dc/terms/">
         <div id="content">
             <div class="navbar navbar-static-top">
                 <div class="navbar-inner">

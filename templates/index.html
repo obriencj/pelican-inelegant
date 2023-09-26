@@ -100,12 +100,12 @@
             <div itemscope class="recent-posts-article">
                 <a href="{{ SITEURL }}/{{ article.url }}">
                     {{ article.title }}
+                </a>
                     {% if article.subtitle %}
                     <small class="subtitle">
                         {{ article.subtitle }}
                     </small>
                     {% endif %}
-                </a>
                 <div class="recent-posts-posted">
                     posted in
                     <a href="{{ SITEURL }}/{{ CATEGORIES_URL }}#{{ article.category.slug }}-ref">{{ article.category }}</a>
@@ -117,6 +117,13 @@
             </div>
             {% endif %}
             {% endfor %}
+
+            <div itemscope class="recent-posts-article">
+              <a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">All Articles
+              </a>
+              <small class="subtitle">continue to the archives
+                for more posts</small>
+            </div>
         </div>
         </div>
     </div>

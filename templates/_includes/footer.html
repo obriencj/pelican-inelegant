@@ -1,14 +1,14 @@
 <footer>
     {% from '_includes/_defaults.html' import SITE_LICENSE with context %}
     {% if SITE_LICENSE %}
-    <div>
+    <div style="width:30%;">
         {{ SITE_LICENSE }}
     </div>
     {% endif %}
 
     {% from '_includes/_defaults.html' import SITESUBTITLE with context %}
     {% if SITESUBTITLE %}
-    <div>
+    <div style="width:40%; text-align: center;">
         <span class="site-name">{{ SITENAME }}</span> - {{ SITESUBTITLE }}
     </div>
     {% endif %}
@@ -24,7 +24,7 @@
     </script>
     {% endif %}
 
-    <div id="fpowered">
+    <div id="fpowered" style="width:30%; text-align: right;">
         Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
         Theme: <a href="//github.com/obriencj/pelican-theme-inelegant" title="InElegant Theme Home Page" target="_blank" rel="nofollow noopener noreferrer">InElegant</a>
         {% if HOSTED_ON and HOSTED_ON.name %}
