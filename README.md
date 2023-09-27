@@ -9,13 +9,16 @@ use.
 
 ## Differences from Elegant
 
-So of course I had to get in there and change some stuff.
+I liked a lot of what Elegant had to offer, but there were a few
+things that didn't quite fit with my existing site content as I was
+porting from Octopress to Pelican. So of course I had to get in
+there and change some stuff! InElegant is my messy attempt to 
+turn Elegant into what I needed.
 
 
 ### Git Layout
-I dropped the documentation blog, and a number of dependency files. I
-have no intention of re-hosting the original elegant site as part of
-this fork.
+
+I dropped the documentation blog, and a number of dependency files.
 
 I re-organized the js and css sources that were minified/squished
 together to the final js and css so that only the results were
@@ -23,34 +26,43 @@ published.
 
 I added a Makefile for setting up the relevant node deps, using gulp
 to do the js/css steps, and for creating a local copy of the
-container.
+container. I'd like to drop gulp entirely, will see.
 
 
 ### Pages
+
 Added a Pages header for listing all of the static non-article
 pages. I had a lot of them, and the only other option was including
 every single one in the navigation bar.
 
 
 ### Basic CSS
+
 There was some fighting over block types for anchors and images that I
 found annoying. I also didn't like the floating underline being
 produced as a transform/translate. So now images correctly clear and
 can be wrapped around with the `float` attribute.
 
+I also tweaked the footer to center the site title, and added a line
+break between title and subtitle (since some of mine were way too long
+when presented on a single line).
+
+I injected a copyright declaration into the html meta head.
+
 
 ### Code blocks
-I absolutely hated the theme that elegant went with, so I swapped back
-to the pygments default theme. I also didn't particularly like the
+
+I disliked the pygments theme that elegant went with, so I swapped
+back to the pygments default theme. I also didn't particularly like the
 Copy feature, so I ripped that out.
 
 
 ### InElegant Pelican Container
 
-This fork produces a containerized version of Pelican with this
-theme installed, for use in generating my own site. Feel free to use
-it if you like it, but be warned that I might tweak things for my own
-use cases.
+This fork produces a containerized version of Pelican with a bunch
+of plugins and this theme installed, for use in generating my own
+site. Feel free to use it if you like it, but be warned that I
+might tweak things for my own use cases.
 
 
 ## License
