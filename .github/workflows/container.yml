@@ -37,12 +37,21 @@ jobs:
           containerfiles: |
             Containerfile
 
+      - name: Extract version
+        id: version
+        uses: flownative/action-docker-get-label@v1
+        with:
+          image: ${{ steps.build.outputs.image }}
+          label: org.label-schema.version
+
       - name: Publish image
         id: publish
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build.outputs.image }}
-          tags: ${{ steps.build.outputs.tags }}
+          tags: |
+            ${{ steps.build.outputs.tags }}
+            ${{ steps.version.outputs.value }}
           registry: ghcr.io/obriencj
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
