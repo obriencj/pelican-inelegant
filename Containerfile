@@ -6,8 +6,7 @@ LABEL \
   org.label-schema.url = "https://github.com/obriencj/pelican-inelegant" \
   org.label-schema.vcs-url = "https://github.com/obriencj/pelican-inelegant" \
   org.label-schema.description = "InElegant themed Pelican site generator" \
-  org.label-schema.name = "pelican-inelegant" \
-  org.label-schema.version = "1.0.0"
+  org.label-schema.name = "pelican-inelegant"
 
 
 # Need this for the pelican-image-process plugin, or else our photos

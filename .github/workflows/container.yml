@@ -1,5 +1,3 @@
-
-
 name: Build pelican container
 
 
@@ -13,6 +11,8 @@ on:
       - Containerfile
       - static/**
       - templates/**
+    tags:
+      - v*
 
 
 jobs:
@@ -27,12 +27,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Gather metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: pelican-inelegant
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=ref,event=push,enable={{is_default_branch}}
+          flavor: |
+            latest=auto
+
       - name: Build image
         id: build
         uses: redhat-actions/buildah-build@v2
         with:
           image: pelican-inelegant
-          tags: latest
+          tags: ${{ steps.meta.outputs.tags }}
           oci: true
           containerfiles: |
             Containerfile
