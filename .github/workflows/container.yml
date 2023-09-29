@@ -16,8 +16,7 @@ on:
 
 
 env:
-  image: pelican-inelegant
-  registry: ghcr.io/${{ github.repository_owner }}
+  image: ghcr.io/${{ github.repository }}
 
 
 jobs:
@@ -45,19 +44,13 @@ jobs:
           flavor: |
             latest=auto
 
-      - name: Clean tags
-        id: clean
-        run: |
-          echo tags=${{ steps.meta.outputs.tags }} | \
-            sed 's,${{ env.image }}\:,,g' >> "$GITHUB_OUTPUT"
-
       - name: Build image
         id: build
         uses: redhat-actions/buildah-build@v2
         with:
           layers: false
           image: ${{ env.image }}
-          tags: ${{ steps.clean.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: true
           containerfiles: |
@@ -67,9 +60,7 @@ jobs:
         id: publish
         uses: redhat-actions/push-to-registry@v2
         with:
-          image: ${{ steps.build.outputs.image }}
           tags: ${{ steps.build.outputs.tags }}
-          registry: ${{ env.registry }}
           username: ${{ github.actor }}
           password: ${{ github.token }}
           extra-args: |
