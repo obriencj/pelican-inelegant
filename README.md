@@ -3,8 +3,10 @@
 [Elegant] is a theme for the static site generator [Pelican].
 
 InElegant is also a theme for the static site generator Pelican.
-InElegant is based on Elegant, with some tweaks and fixes for my own
-use.
+InElegant is based on Elegant, with some tweaks and fixes for
+[my own use].
+
+[my own use]: https://obriencj.preoccupied.net/
 
 pelican-inelegant is a container which bundles up the Pelican
 tool, a selection of plugins, and the InElegant theme.
