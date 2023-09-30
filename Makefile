@@ -20,6 +20,7 @@ dependencies:	## Install dependencies using yarn
 gulp:	## Build static CSS and JS
 	@npx gulp
 
+
 container: gulp	## Build the pelican-inelegant:latest container
 	@podman build . -f Containerfile \
 	  --tag 'pelican-inelegant:latest'
