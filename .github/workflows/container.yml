@@ -53,6 +53,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: true
+          build-args: |
+            GIT_COMMIT="${{ github.sha }}"
           containerfiles: |
             Containerfile
 
