@@ -37,7 +37,7 @@ RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
 
 # Fetch the pelican-plugins git repository
 ENV PLUGIN_PATHS=/pelican/plugins
-RUN git clone --depth=1 --single-branch --branch master --filter-tree:0 \
+RUN git clone --depth=1 --single-branch --branch master --no-tags \
   https://github.com/getpelican/pelican-plugins.git /pelican/plugins
 
 # We installed these two previously, and don't want these old copies
