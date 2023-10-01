@@ -20,11 +20,17 @@ dependencies:	## Install dependencies using yarn and pipx
 	@pipx install lesscpy --system-site-packages
 
 
-##@ Build
-
+##@ Container dependencies
 
 requirements.txt: requirements.in
 	@pip-compile
+
+
+upgrade-requirements:	## Upgrade requirements.txt
+	@pip-compile --upgrade
+
+
+##@ Build
 
 
 source/css/%.css: source/bootstrap/%.less
@@ -47,7 +53,7 @@ container: requirements.txt css-js	## Build the pelican-inelegant:latest contain
 	  --tag 'pelican-inelegant:latest'
 
 
-.PHONY: bootstrap container dependencies gulp help
+.PHONY: bootstrap container dependencies gulp help upgrade
 
 
 # The end.
