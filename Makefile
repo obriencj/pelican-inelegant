@@ -2,6 +2,7 @@
 
 BOOTSTRAP_CSS:=source/css/bootstrap.css source/css/responsive.css
 
+
 ##@ Basic Targets
 
 default:	help
@@ -37,11 +38,11 @@ clean-bootstrap:
 	@rm -f $(BOOTSTRAP_CSS)
 
 
-gulp: bootstrap	## Build static CSS and JS
+css-js: bootstrap	## Build static CSS and JS
 	@npx gulp
 
 
-container: requirements.txt gulp	## Build the pelican-inelegant:latest container
+container: requirements.txt css-js	## Build the pelican-inelegant:latest container
 	@podman build . -f Containerfile \
 	  --tag 'pelican-inelegant:latest'
 
