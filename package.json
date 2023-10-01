@@ -1,12 +1,11 @@
 {
   "name": "Pelican-InElegant",
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
-    "browser-sync": "^2.27.10",
     "cssnano": "^5.1.12",
     "cz-conventional-changelog": "3.3.0",
     "gulp": "^4.0.2",
@@ -35,6 +34,6 @@
     "IE 10"
   ],
   "dependencies": {
-    "postcss": "^8.4.30"
+    "postcss": "^8.4.31"
   }
 }
