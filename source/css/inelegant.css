@@ -1,0 +1,60 @@
+
+.article-content p img.image-process-inline {
+    padding: 0;
+    display: block;
+    box-sizing: border-box;
+    clear: both;
+    width: 300px;
+    height: 225px;
+}
+
+.article-content p img.image-process-upline {
+    padding: 0;
+    display: block;
+    box-sizing: border-box;
+    clear: both;
+    width: 225px;
+    height: 300px;
+}
+
+.article-content p img.right {
+    float: right;
+    margin: 0.2em 0em 0em 1em;
+}
+
+.article-content p img.left {
+    float: left;
+    margin: 0.2em 1em 0em 0em;
+}
+
+.article-content a {
+    text-decoration: none;
+    color: #1863a1;
+
+    display: inline;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.article-content a:after {
+    display: none;
+    transition: none;
+    transform: none;
+}
+
+.article-content a:hover {
+    text-decoration: underline;
+    color: #0181eb;
+}
+
+.article-content :is(h1, h2, h3, h4) {
+    clear: both;
+}
+
+.article-content p:not(#list-of-translations):not(#post-share-links) a:not(.ampl) {
+    text-decoration: none;
+    color: #1863a1;
+    display: inline;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
