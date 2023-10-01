@@ -11,15 +11,6 @@ import rfs from "rfs";
 import concat from "gulp-concat";
 import terser from "gulp-terser";
 
-const compileBootstrapLess = () =>
-  exec(
-    "node_modules/recess/bin/recess --compile source/bootstrap/bootstrap.less > source/css/bootstrap.css"
-  );
-
-const compileResponsiveLess = () =>
-  exec(
-    "node_modules/recess/bin/recess --compile source/bootstrap/responsive.less > source/css/bootstrap_responsive.css"
-  );
 
 const pathProdCSS = path.join(
   __dirname,
@@ -75,8 +66,6 @@ const compileCSS = () => {
 
 const buildAll = series(
   rmProdCSS,
-  compileBootstrapLess,
-  compileResponsiveLess,
   compileCSS,
   minifyJS,
 );
@@ -87,14 +76,10 @@ exports.js = minifyJS;
 
 exports.css = series(
   rmProdCSS,
-  compileBootstrapLess,
-  compileResponsiveLess,
   compileCSS
 );
 
 const build = series(
-  compileBootstrapLess,
-  compileResponsiveLess,
   compileCSS,
   minifyJS,
 );

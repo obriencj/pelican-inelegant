@@ -27,14 +27,12 @@ LABEL \
 RUN apt-get update ; apt-get install -y exiftool
 
 
-# Install pelican and available plugins
-RUN pip3 install \
-  pelican[markdown] \
-  pelican-image-process pelican-liquid-tags pelican-yaml-metadata \
-  pygments
-
-
 WORKDIR /pelican
+
+COPY requirements.txt .
+
+# Install pelican and available plugins
+RUN pip3 install -r requirements.txt
 
 
 # Fetch the pelican-plugins git repository
