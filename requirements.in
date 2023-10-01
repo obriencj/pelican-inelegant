@@ -1,0 +1,12 @@
+# The big one
+pelican[markdown]
+
+# Some plugins
+pelican-image-process
+pelican-liquid-tags
+pelican-yaml-metadata
+
+# Support
+pygments
+
+# The end.
