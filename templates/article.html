@@ -30,20 +30,20 @@
 
 {% block content %}
 <article itemscope>
-<div class="row-fluid">
+  <div class="row-fluid">
     <header class="page-header span10 offset2">
-        <h1 property="title">
-            <a href="{{ SITEURL }}/{{ article.url }}">
-                {{ article.title }}
-                {% if article.subtitle %}
-                <small class="subtitle">
-                    <br /> {{ article.subtitle }}
-                </small>
-                {% endif %}
-            </a>
-        </h1>
+      <h1 property="title">
+        <a href="{{ SITEURL }}/{{ article.url }}">
+          {{ article.title }}
+          {% if article.subtitle %}
+          <small class="subtitle">
+            <br /> {{ article.subtitle }}
+          </small>
+          {% endif %}
+        </a>
+      </h1>
     </header>
-</div>
+  </div>
 
 <div class="row-fluid">
     {% if article.toc %}
