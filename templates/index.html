@@ -43,7 +43,7 @@
     {% set css_class = 'span12' %}
     {% endif %}
     <header class="page-header {{ css_class }}">
-    <h1><a href="{{ SITEURL }}">{{ LANDING_PAGE_TITLE }}</a></h1>
+      <h1><a href="{{ SITEURL }}">{{ LANDING_PAGE_TITLE }}</a></h1>
     </header>
     {% endif %}
 
@@ -54,9 +54,11 @@
         {% set css_class = 'span8' %}
         {% endif %}
         <div class="{{ css_class }}">
+            {% if landing_page.page.title %}
             <header>
-                <h1 id="about-me">{{ landing_page.page.title }}</h1>
+              <h2 id="about-me">{{ landing_page.page.title }}</h1>
             </header>
+            {% endif %}
             <div class="article-content">
                 {{ landing_page.page.content }}
             </div>
@@ -69,9 +71,11 @@
         {% set css_class = 'span4' %}
         {% endif %}
         <div class="{{ css_class }}">
+            {% if PROJECTS_TITLE %}
             <header>
-            <h1 id="my-projects">{{ PROJECTS_TITLE }}</h1>
+              <h2 id="my-projects">{{ PROJECTS_TITLE }}</h1>
             </header>
+            {% endif %}
             {% for project in PROJECTS %}
             <ul class="list-projects">
                 <li>
@@ -92,7 +96,7 @@
     <div class="row-fluid">
         <div class="{{ css_class }}">
             <header>
-            <h1 id="recent-posts">Recent Posts <a id="allposts" href="{{ SITEURL }}/{{ ARCHIVES_URL }}">all posts</a></h1>
+            <h2 id="recent-posts">Recent Posts <a id="allposts" href="{{ SITEURL }}/{{ ARCHIVES_URL }}">all posts</a></h1>
             </header>
         <div class="recent-posts">
             {% for article in articles %}
