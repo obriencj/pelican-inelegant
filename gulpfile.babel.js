@@ -1,88 +1,58 @@
-import fs from "fs";
-import path from "path";
-import { src, dest, parallel, series } from "gulp";
-import { exec } from "child_process";
-import run from "gulp-run-command";
-import postcss from "gulp-postcss";
-import magician from "postcss-font-magician";
+
+import _ from 'gulp';
+const { src, dest, series } = _;
+
+import concat from "gulp-concat";
 import cssnano from "cssnano";
+import magician from "postcss-font-magician";
+import postcss from "gulp-postcss";
 import postcssPresetEnv from "postcss-preset-env";
 import rfs from "rfs";
-import concat from "gulp-concat";
 import terser from "gulp-terser";
 
 
-const pathProdCSS = path.join(
-  __dirname,
-  "static/css/inelegant.css"
-);
-
-const rmProdCSS = (cb) => {
-  if (fs.existsSync(pathProdCSS)) {
-    fs.unlinkSync(pathProdCSS);
-  }
-  cb();
-};
-
 const minifyJS = () => {
-  return src([
-      "source/applause-button/applause-button.js",
-      "source/photoswipe/photoswipe.js",
-      "source/photoswipe/photoswipe-ui-default.js",
-      "source/photoswipe/photoswipe-array-from-dom.js",
-      "source/lunr/lunr.js",
-      "source/clipboard/clipboard.js",
-      "source/js/create-instagram-gallery.js",
-      "source/js/lunr-search-result.js",
-      "!source/js/copy-to-clipboard.js"
-  ])
-    .pipe(concat("inelegant.js"))
-    .pipe(terser())
-    .pipe(dest("static/js/"));
+    return src([
+        "source/applause-button/applause-button.js",
+        "source/js/create-instagram-gallery.js",
+        "source/js/lunr-search-result.js",
+        "source/lunr/lunr.js",
+        "source/photoswipe/photoswipe.js",
+        "source/photoswipe/photoswipe-ui-default.js",
+        "source/photoswipe/photoswipe-array-from-dom.js",
+    ])
+        .pipe(concat("inelegant.js"))
+        .pipe(terser())
+        .pipe(dest("static/js/"));
 };
+
 
 const compileCSS = () => {
-  const plugins = [
-    // postcssPresetEnv comes with autoprefixer
-    postcssPresetEnv({ stage: 1 }),
-    magician({}),
-    rfs(),
-    cssnano({
-      preset: "default",
-    }),
-  ];
-  return src([
-      "source/applause-button/applause-button.css",
-      "source/photoswipe/photoswipe.css",
-      "source/photoswipe/default-skin/default-skin.css",
-      "source/css/*.css",
-      "!source/css/code-copy.css",
-      "!source/css/code.css"
-  ])
-    .pipe(postcss(plugins))
-    .pipe(concat("inelegant.css"))
-    .pipe(dest("static/css/"));
+    const plugins = [
+        cssnano({ preset: "default" }),
+        magician({}),
+        postcssPresetEnv({ stage: 1 }),
+        rfs(),
+    ];
+    return src([
+        "source/applause-button/applause-button.css",
+        "source/photoswipe/photoswipe.css",
+        "source/photoswipe/default-skin/default-skin.css",
+        "source/css/*.css",
+    ])
+        .pipe(postcss(plugins))
+        .pipe(concat("inelegant.css"))
+        .pipe(dest("static/css/"));
 };
 
-const buildAll = series(
-  rmProdCSS,
-  compileCSS,
-  minifyJS,
+
+exports.build_css = compileCSS
+exports.build_js = minifyJS
+
+exports.default = series(
+    compileCSS,
+    minifyJS,
 );
 
-exports.validate = run("jinja-ninja templates");
 
-exports.js = minifyJS;
-
-exports.css = series(
-  rmProdCSS,
-  compileCSS
-);
-
-const build = series(
-  compileCSS,
-  minifyJS,
-);
-exports.build = build;
-
-exports.default = build;
+// The end.

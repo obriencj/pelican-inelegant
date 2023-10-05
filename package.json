@@ -1,38 +1,24 @@
 {
   "name": "Pelican-InElegant",
+  "license": "MIT",
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/register": "^7.22.15",
     "cssnano": "^5.1.12",
-    "cz-conventional-changelog": "3.3.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^9.0.1",
     "gulp-run-command": "^0.0.10",
     "gulp-terser": "^2.1.0",
+    "postcss": "^8.4.31",
     "postcss-font-magician": "^3.0.0",
     "postcss-preset-env": "^7.7.1",
-    "rfs": "^9.0.6",
-    "semantic-release": "^19.0.3"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "rfs": "^9.0.6"
   },
   "babel": {
     "presets": [
-      "es2015"
+      "@babel/preset-env"
     ]
-  },
-  "browserslist": [
-    "defaults",
-    "IE 10"
-  ],
-  "dependencies": {
-    "postcss": "^8.4.31"
   }
 }

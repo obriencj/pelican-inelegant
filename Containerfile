@@ -1,5 +1,16 @@
-FROM python:3.9
+FROM node:20 AS BUILD
 
+WORKDIR /build
+
+COPY package.json yarn.lock .
+RUN yarnpkg
+
+COPY gulpfile.babel.js .
+COPY source/ /build/source/
+RUN npx gulp
+
+
+FROM python:3.9
 
 ARG AUTHOR_EMAIL="obriencj@gmail.com"
 ARG GIT_REPO="https://github.com/obriencj/pelican-inelegant.git"
@@ -9,17 +20,17 @@ ARG PROJECT_NAME="pelican-inelegant"
 ARG PROJECT_URL="https://github.com/obriencj/pelican-inelegant"
 
 LABEL \
-  net.preoccupied.image.git-repository="${GIT_REPO}" \
-  net.preoccupied.image.git-commit="${GIT_COMMIT}" \
-  org.label-schema.description="${PROJECT_DESC}" \
-  org.label-schema.name="${PROJECT_NAME}" \
-  org.label-schema.schema-version="1.0" \
-  org.label-schema.url="${PROJECT_URL}" \
-  org.label-schema.vcs-url="${PROJECT_URL}" \
-  org.opencontainers.image.authors="${AUTHOR_EMAIL}" \
-  org.opencontainers.image.description="${PROJECT_DESC}" \
-  org.opencontainers.image.title="${PROJECT_NAME}" \
-  org.opencontainers.image.url="${PROJECT_URL}"
+    net.preoccupied.image.git-repository="${GIT_REPO}" \
+    net.preoccupied.image.git-commit="${GIT_COMMIT}" \
+    org.label-schema.description="${PROJECT_DESC}" \
+    org.label-schema.name="${PROJECT_NAME}" \
+    org.label-schema.schema-version="1.0" \
+    org.label-schema.url="${PROJECT_URL}" \
+    org.label-schema.vcs-url="${PROJECT_URL}" \
+    org.opencontainers.image.authors="${AUTHOR_EMAIL}" \
+    org.opencontainers.image.description="${PROJECT_DESC}" \
+    org.opencontainers.image.title="${PROJECT_NAME}" \
+    org.opencontainers.image.url="${PROJECT_URL}"
 
 
 # Need this for the pelican-image-process plugin, or else our photos
@@ -46,6 +57,7 @@ RUN rm -rf /pelican/plugins/image_process \
 
 
 # Copy and install theme
+COPY --from=BUILD /build/static/ /pelican/inelegant/static/
 COPY static/ /pelican/inelegant/static/
 COPY templates/ /pelican/inelegant/templates/
 RUN pelican-themes -i /pelican/inelegant
