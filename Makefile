@@ -15,7 +15,6 @@ help:	## Display this help  (default)
 ##@ Setup Environment
 
 dependencies:	## Install dependencies using yarn and pipx
-	@yarn
 	@pipx install pip-tools
 	@pipx install lesscpy --system-site-packages
 
@@ -44,16 +43,12 @@ clean-bootstrap:
 	@rm -f $(BOOTSTRAP_CSS)
 
 
-css-js: bootstrap	## Build static CSS and JS
-	@npx gulp
-
-
-container: requirements.txt css-js	## Build the pelican-inelegant:latest container
+container:	## Build the pelican-inelegant:latest container
 	@podman build . -f Containerfile \
 	  --tag 'pelican-inelegant:latest'
 
 
-.PHONY: bootstrap container dependencies gulp help upgrade
+.PHONY: bootstrap clean-bootstrap container dependencies gulp help upgrade
 
 
 # The end.
