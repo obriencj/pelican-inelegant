@@ -31,6 +31,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Pull previous master
+        run: |
+          podman pull ${{ env.image }}:master
+
       - name: Gather metadata
         id: meta
         uses: docker/metadata-action@v5
@@ -48,13 +52,13 @@ jobs:
         id: build
         uses: redhat-actions/buildah-build@v2
         with:
-          layers: false
           image: ${{ env.image }}
+          layers: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: true
           build-args: |
-            GIT_COMMIT="${{ github.sha }}"
+            GIT_COMMIT=${{ github.sha }}
           containerfiles: |
             Containerfile
 
