@@ -11,6 +11,10 @@ on:
       - Containerfile
       - static/**
       - templates/**
+      - gulpfile.babel.js
+      - package.json
+      - requirements.txt
+      - yarn.lock
     tags:
       - v*
 
