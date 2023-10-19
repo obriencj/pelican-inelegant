@@ -58,3 +58,7 @@
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+
+:is(div.blog-archives div, div.recent-posts-article, ul.list-projects li):last-of-type {
+    border-bottom: none;
+}

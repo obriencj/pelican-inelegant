@@ -76,13 +76,13 @@
               <h2 id="my-projects">{{ PROJECTS_TITLE }}</h1>
             </header>
             {% endif %}
-            {% for project in PROJECTS %}
             <ul class="list-projects">
+            {% for project in PROJECTS %}
                 <li>
                 <a href="{{ project.url }}" title="{{ project.name }}">{{ project.name }}</a> <span class="proj-desc">{{ project.description }}</span>
                 </li>
-            </ul>
             {% endfor %}
+            </ul>
         </div>
         {% endif %}
     </div>
