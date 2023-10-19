@@ -1,3 +1,7 @@
+:root {
+  --borderRadius: 4px;
+  --mutedTextColor: dimgray;
+}
 
 .article-content p img.image-process-inline {
     padding: 0;
@@ -59,8 +63,19 @@
     word-wrap: break-word;
 }
 
-:is(div.blog-archives div, div.recent-posts-article, ul.list-projects li):last-of-type {
+div.blog-archives div:last-of-type, div.recent-posts-article:last-of-type, ul.list-projects li:last-of-type {
     border-bottom: none;
+}
+
+div#articles-all-tail {
+    width: 100%;
+    padding-top: 2em;
+}
+
+div#articles-all-tail a.allposts {
+    float: right;
+    font-size: 14pt;
+    color: var(--mutedTextColor);
 }
 
 footer {
