@@ -81,9 +81,9 @@
             {{ article_author(article) }}
             {% from '_includes/comments.html' import comments_section with context %}
             {{ comments_section(article) }}
-            <hr/>
             {% include '_includes/related_posts.html' with context %}
             {% if article.prev_article or article.next_article %}
+            <hr />
             <aside>
             <nav>
             <ul class="articles-timeline">
