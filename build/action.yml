@@ -7,11 +7,11 @@ author: "Christopher O'Brien  <obriencj@gmail.com>"
 inputs:
   version:
     description: "pelican-inelegant container version"
-    required: true
+    required: false
     default: "master"
   config:
     description: "pelican config file"
-    required: true
+    required: false
     default: "pelicanconf.py"
 
 
