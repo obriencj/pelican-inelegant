@@ -16,12 +16,13 @@ inputs:
 
 
 runs:
-  using: docker
-  image: |
-    docker://ghcr.io/obriencj/pelican-inelegant:\
-    ${{ github.event.inputs.version }}
-  args:
-    - --settings=${{ github.event.inputs.conf }}
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        podman run --rm --volume "$GITHUB_WORKDIR":/work \
+        ghcr.io/obriencj/pelican-inelegant:"$INPUT_VERSION" \
+        --settings "$INPUT_CONFIG"
 
 
 # The end.
