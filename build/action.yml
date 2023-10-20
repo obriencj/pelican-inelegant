@@ -1,0 +1,24 @@
+name: "Pelican InElegant Build"
+description: "Build a static site using Pelican InElegant"
+author: "Christopher O'Brien  <obriencj@gmail.com>"
+
+
+inputs:
+  version:
+    description: "pelican-inelegant version to use"
+    required: false
+    default: "master"
+  conf:
+    description: "pelican config file"
+    required: false
+    default: "pelicanconf.py"
+
+
+runs:
+  using: "docker"
+  image: "docker://ghcr.io/obriencj/pelican-inelegant:${{ inputs.version }}"
+  args:
+    - "--settings=${{ inputs.conf }}"
+
+
+# The end.
