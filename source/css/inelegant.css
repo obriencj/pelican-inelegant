@@ -3,6 +3,9 @@
   --mutedTextColor: dimgray;
 }
 
+
+/* image process classes */
+
 .article-content p img.image-process-inline {
     padding: 0;
     display: block;
@@ -31,6 +34,9 @@
     margin: 0.2em 1em 0em 0em;
 }
 
+
+/* fixing links */
+
 .article-content a {
     text-decoration: none;
     color: #1863a1;
@@ -40,32 +46,20 @@
     word-wrap: break-word;
 }
 
-.article-content a:after {
-    display: none;
-    transition: none;
-    transform: none;
-}
-
 .article-content a:hover {
     text-decoration: underline;
     color: #0181eb;
 }
 
-.article-content :is(h1, h2, h3, h4) {
-    clear: both;
-}
 
-.article-content p:not(#list-of-translations):not(#post-share-links) a:not(.ampl) {
-    text-decoration: none;
-    color: #1863a1;
-    display: inline;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
+/* removing redundant lines on main page */
 
 div.blog-archives div:last-of-type, div.recent-posts-article:last-of-type, ul.list-projects li:last-of-type {
     border-bottom: none;
 }
+
+
+/* trailing all posts link on main page */
 
 div#articles-all-tail {
     width: 100%;
@@ -74,9 +68,16 @@ div#articles-all-tail {
 
 div#articles-all-tail a.allposts {
     float: right;
-    font-size: 14pt;
+    font-size: 16pt;
     color: var(--mutedTextColor);
 }
+
+a.allposts:hover {
+    text-decoration: none;
+}
+
+
+/* prettier footer */
 
 footer {
     background-color: #f9f9f9;
@@ -85,3 +86,15 @@ footer {
     box-shadow: 0 1px -10px rgba(0,0,0,.1);
     border: 1px solid #d3d3d3;
 }
+
+
+/* changelog dates shoould be fixed-width */
+
+#changelog + dl > dt {
+    font-family: "Lucida Console", "Courier New", monospace;
+    margin-top: 0.5em;
+    margin-bottom: 0px;
+}
+
+
+/* The end. */
