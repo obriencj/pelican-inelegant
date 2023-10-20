@@ -20,9 +20,9 @@ runs:
   steps:
     - shell: bash
       run: |
-        podman run --rm --volume "$GITHUB_WORKDIR":/work \
-        ghcr.io/obriencj/pelican-inelegant:"$INPUT_VERSION" \
-        --settings "$INPUT_CONFIG"
+        podman run --rm --volume "${{ github.workdir }}":/work \
+        ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version}}" \
+        --settings "${{ inputs.config }}"
 
 
 # The end.
