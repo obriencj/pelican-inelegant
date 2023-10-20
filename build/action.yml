@@ -7,11 +7,11 @@ author: "Christopher O'Brien  <obriencj@gmail.com>"
 inputs:
   version:
     description: "pelican-inelegant container version"
-    required: false
+    required: true
     default: "master"
   config:
     description: "pelican config file"
-    required: false
+    required: true
     default: "pelicanconf.py"
 
 
@@ -20,8 +20,8 @@ runs:
   steps:
     - shell: bash
       run: |
-        podman run --rm --volume "${{ github.workdir }}":/work \
-        ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version}}" \
+        podman run --rm --volume "${{ github.workspace }}":/work \
+        ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version }}" \
         --settings "${{ inputs.config }}"
 
 
