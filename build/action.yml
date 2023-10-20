@@ -24,7 +24,7 @@ runs:
         echo "version =" "${{ inputs.version }}"
         echo "config  =" "${{ inputs.config }}"
         podman run --rm --volume "${{ github.workspace }}":/work \
-        ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version || master }}" \
+        ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version }}" \
         --settings "${{ inputs.config }}"
 
 
