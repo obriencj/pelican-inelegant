@@ -1,12 +1,11 @@
 {
   "name": "Pelican-InElegant",
   "license": "MIT",
-
   "resolutions": {
     "chokidar": "^3.5.3",
-    "glob-parent": "^6.0.2"
+    "glob-parent": "^6.0.2",
+    "postcss": "^8.4.31"
   },
-
   "devDependencies": {
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.22.20",
@@ -22,7 +21,6 @@
     "postcss-preset-env": "^7.7.1",
     "rfs": "^9.0.6"
   },
-
   "babel": {
     "presets": [
       "@babel/preset-env"
