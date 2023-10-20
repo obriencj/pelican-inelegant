@@ -9,6 +9,7 @@ inputs:
     description: "pelican-inelegant container version"
     required: true
     default: "master"
+
   config:
     description: "pelican config file"
     required: true
@@ -20,8 +21,10 @@ runs:
   steps:
     - shell: bash
       run: |
+        echo "version =" "${{ inputs.version }}"
+        echo "config  =" "${{ inputs.config }}"
         podman run --rm --volume "${{ github.workspace }}":/work \
-        ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version }}" \
+        ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version || master }}" \
         --settings "${{ inputs.config }}"
 
 
