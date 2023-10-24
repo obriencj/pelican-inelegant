@@ -19,10 +19,12 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Running inelegant container
-      uses: docker://ghcr.io/obriencj/pelican-inelegant:${{ inputs.version }}
-      with:
-        args: --settings "${{ inputs.config }}"
+    - name: Launch pelican-inelegant container
+      shell: bash
+      run: |
+        podman run --rm --volume "${{ github.workspace }}":/work \
+          ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version }}" \
+          --settings "${{ inputs.config }}"
 
 
 # The end.
