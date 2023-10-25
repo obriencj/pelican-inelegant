@@ -10,6 +10,7 @@ on:
     paths:
       - Containerfile
       - static/**
+      - source/**
       - templates/**
       - gulpfile.babel.js
       - package.json
