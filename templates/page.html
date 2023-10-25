@@ -65,12 +65,12 @@
           {% if page.locale_modified and page.modified %}
           {% set delta = (page.modified - page.date).days %}
           {% if delta > 0 %}
-          <h4>Last Updated</h4>
+          <h4>Updated</h4>
           <time datetime="{{ page.modified.isoformat() }}">{{ page.locale_modified }}</time>
           {% endif %}
 
           {% elif page.modified %}
-          <h4>Last Updated</h4>
+          <h4>Updated</h4>
           <div class="last-updated">{{ page.modified }}</div>
           {% endif %}
 
