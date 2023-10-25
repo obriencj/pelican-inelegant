@@ -4,6 +4,12 @@
 }
 
 
+h1, h2, h3, h4 {
+    clear: both;
+    break-before: always;
+}
+
+
 /* image process classes */
 
 .article-content p img.image-process-inline {
