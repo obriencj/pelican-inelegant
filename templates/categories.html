@@ -39,54 +39,32 @@ All categories of the {{ SITENAME|striptags|e }} blog.
 
 
 <div class="row-fluid">
-    <div class="span8 offset2">
-        <div class="accordion" id="accordion2">
-            {% for category, articles in categories %}
-            <div class="accordion-group">
-                <div class="accordion-heading">
-                    <a class="accordion-toggle category-title-inside-accordion collapsed" data-toggle="collapse" data-parent="#accordion2" href="#{{ category.slug }}-ref">
-                        {% set num = articles|count %}
-                        {{ category }}<span class="superscript">{{ num }}</span>
-                    </a>
-                </div>
-                <div id="{{ category.slug }}-ref" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                        <ul class="list-articles-under-tag-category">
-                            {% for article in articles %}
-                            <li itemscope>
-                                    <a href="{{ SITEURL }}/{{ article.url }}">
-                                        {{ article.title }}
-                                        {% if article.subtitle %}
-                                        <small class="subtitle">
-                                            {{ article.subtitle }}
-                                        </small>
-                                        {% endif %}
-                                    </a>
-                                <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">
-                                    {{ article.locale_date }}
-                                </time>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+  <div class="span8 offset2">
+    {% for category, articles in categories|sort %}
+    <h2 id="{{ category.slug}}-ref" class="tag-title">{{ category }}</h2>
+    <ul class="list-articles-under-tag-category">
+      {% for article in articles|sort(reverse = true, attribute = 'date') %}
+      <li itemscope>
+        <a href="{{ SITEURL }}/{{ article.url }}">
+          {{ article.title }}
+          {% if article.subtitle %}
+          <small class="subtitle">
+            {{ article.subtitle }}
+          </small>
+          {% endif %}
+        </a>
+        <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">
+          {{ article.locale_date }}
+        </time>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </div>
 </div>
+
 {% endblock content %}
+
 {% block script %}
 {{ super() }}
-<script>
-    function uncollapse() {
-            $(window.location.hash).collapse({
-                toggle: true
-            })
-    }
-</script>
-
-<script>
-    uncollapse();
-</script>
 {% endblock script %}
