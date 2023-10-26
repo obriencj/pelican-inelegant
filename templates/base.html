@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="{{ DEFAULT_LANG }}">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {% block head_links %}
         {% if PLUGINS and 'assets' in PLUGINS %}
         {% include '_includes/minify_css.html' with context %}
         {% else %}
-        <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/inelegant.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/inelegant.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/custom.css" media="screen" />
         {% endif %}
         {% endblock head_links %}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
 
         {% if CLAIM_GOOGLE %}
         {% include '_includes/claim_google.html' with context %}
@@ -45,10 +45,10 @@
         {% block meta_tags_in_head %}
         {% from '_includes/_defaults.html' import TWITTER_USERNAME with context %}
         {% if TWITTER_USERNAME %}
-        <meta name="twitter:creator" content="@{{ TWITTER_USERNAME }}">
+        <meta name="twitter:creator" content="@{{ TWITTER_USERNAME }}" />
         {% endif %}
         <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary">
+        <meta name="twitter:card" content="summary" />
         {% endblock meta_tags_in_head %}
         <title>{% block title %}{{ SITENAME|striptags|e }}{% endblock title %}</title>
         {% include '_includes/favicon_links.html' %}
@@ -120,6 +120,6 @@
         {% endblock script %}
         {% include '_includes/stat_counter.html' %}
     </body>
-    <!-- Theme: Elegant built for Pelican
-        License : MIT -->
+    <!-- Theme: Pelican InElegant -->
+    <!-- License: MIT -->
 </html>

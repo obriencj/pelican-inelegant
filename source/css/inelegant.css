@@ -1,12 +1,21 @@
 :root {
   --borderRadius: 4px;
   --mutedTextColor: dimgray;
+  --linkColor: #1863a1;
+  --linkHoverColor: #0181eb;
 }
 
 
 h1, h2, h3, h4 {
     clear: both;
     break-before: always;
+}
+
+
+/* index page div wrapping summary paragraph(s) */
+
+div.recent-posts-summary {
+    margin-top: 0.5em;
 }
 
 
@@ -45,7 +54,7 @@ h1, h2, h3, h4 {
 
 .article-content a {
     text-decoration: none;
-    color: #1863a1;
+    color: var(--linkColor);
 
     display: inline;
     white-space: pre-wrap;
@@ -54,7 +63,7 @@ h1, h2, h3, h4 {
 
 .article-content a:hover {
     text-decoration: underline;
-    color: #0181eb;
+    color: var(--linkHoverColor);
 }
 
 
