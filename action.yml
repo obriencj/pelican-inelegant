@@ -32,14 +32,14 @@ runs:
   steps:
     - name: Launch pelican-inelegant container
       shell: bash
-      run: |
-        podman run --rm --volume "${{ github.workspace }}":/work \
-          'ghcr.io/obriencj/pelican-inelegant:\
-           ${{ inputs.version || 'master' }}' \
-          ${{ inputs.settings && format('-s''{0}''', inputs.settings) }} \
-          ${{ inputs.theme && format('-t''{0}''', inputs.theme) }} \
-          ${{ inputs.output && format('-o''{0}''', inputs.output) }} \
-          ${{ inputs.content && format('''{0}''', inputs.content) }}
+      run: "\
+      podman run --rm --volume '${{ github.workspace }}':/work \
+        ghcr.io/obriencj/pelican-inelegant:\
+          '${{ inputs.version || 'master' }}' \
+        ${{ inputs.settings && format('-s''{0}''', inputs.settings) }} \
+        ${{ inputs.theme && format('-t''{0}''', inputs.theme) }} \
+        ${{ inputs.output && format('-o''{0}''', inputs.output }} \
+        ${{ inputs.content && format('''{0}''', inputs.content) }}"
 
 
 # The end.
