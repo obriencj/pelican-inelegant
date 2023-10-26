@@ -7,13 +7,29 @@ author: "Christopher O'Brien  <obriencj@gmail.com>"
 inputs:
   version:
     description: "pelican-inelegant container version"
-    required: true
-    default: "master"
+    required: false
+    default: master
 
-  config:
-    description: "pelican config file"
-    required: true
-    default: "pelicanconf.py"
+  settings:
+    description: "override pelican settings file"
+    required: false
+
+  content:
+    description: "override content directory"
+    required: false
+
+  output:
+    description: "override output directory"
+    required: false
+
+  theme:
+    description: "override theme directory"
+    required: false
+
+
+env:
+  image: |
+    ghcr.io/obriencj/pelican-inelegant:${{ inputs.version || 'master' }}
 
 
 runs:
@@ -23,8 +39,11 @@ runs:
       shell: bash
       run: |
         podman run --rm --volume "${{ github.workspace }}":/work \
-          ghcr.io/obriencj/pelican-inelegant:"${{ inputs.version }}" \
-          --settings "${{ inputs.config }}"
+          '${{ env.image }}' \
+          ${{ inputs.settings && format("-s'{0}'", inputs.settings) }} \
+          ${{ inputs.theme && format("-t'{0}'", inputs.theme) }} \
+          ${{ inputs.output && format("-o'{0}'", inputs.output }} \
+          ${{ inputs.content && format("'{0}'", inputs.content) }}
 
 
 # The end.
