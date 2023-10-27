@@ -64,7 +64,11 @@ runs:
       shell: bash
       run: "\
       podman pull ghcr.io/obriencj/pelican-inelegant\
-        '${{ inputs.version && format(':{0}', inputs.version) }}'
+        '${{ inputs.version && format(':{0}', inputs.version) }}'"
+
+    - name: Tag pelican-inelegant image
+      shell: bash
+      run: "\
       podman tag ghcr.io/obriencj/pelican-inelegant\
         '${{ inputs.version && format(':{0}', inputs.version) }}' \
         pelican-inelegant"
