@@ -27,10 +27,54 @@ inputs:
     required: false
 
 
+outputs:
+  settings:
+    description: "Pelican configuration file"
+    value: ${{ steps.settings.outputs.settings }}
+
+  path:
+    description: "Path that pelican will build from"
+    value: ${{ steps.settings.outputs.path }}
+
+  output-path:
+    description: "Path that pelican will build into"
+    value: ${{ steps.settings.outputs.output_path }}
+
+  theme:
+    description: "Configured THEME"
+    value: ${{ steps.settings.outputs.theme }}
+
+  site-url:
+    description: "Configured SITEURL"
+    value: ${{ steps.settings.outputs.siteurl }}
+
+  site-name:
+    description: "Configured SITENAME"
+    value: ${{ steps.settings.outputs.sitename }}
+
+  site-subtitle:
+    description: "Configured SITESUBTITLE"
+    value: ${{ steps.settings.outputs.sitesubtitle }}
+
+
 runs:
   using: composite
   steps:
-    - name: Launch pelican-inelegant container
+    - name: Record settings to output
+      id: settings
+      shell: bash
+      run: "\
+      podman run --rm --volume '${{ github.workspace }}':/work \
+        --entrypoint /pelican/dump-settings.py \
+        ghcr.io/obriencj/pelican-inelegant:\
+          '${{ inputs.version || 'master' }}' \
+        ${{ inputs.settings && format('-s''{0}''', inputs.settings) }} \
+        ${{ inputs.theme && format('-t''{0}''', inputs.theme) }} \
+        ${{ inputs.output && format('-o''{0}''', inputs.output) }} \
+        ${{ inputs.content && format('''{0}''', inputs.content) }}
+        >> $GITHUB_OUTPUT"
+
+    - name: Build site with pelican
       shell: bash
       run: "\
       podman run --rm --volume '${{ github.workspace }}':/work \

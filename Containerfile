@@ -63,6 +63,11 @@ COPY templates/ /pelican/inelegant/templates/
 RUN pelican-themes -i /pelican/inelegant
 
 
+# This script enables the github action to produce outputs reflecting
+# the settings used
+COPY dump-settings.py .
+
+
 # since Pelican configurations are loaded as python modules, let's
 # avoid writing out a __pycache__ every time they're used
 ENV PYTHONDONTWRITEBYTECODE=1
