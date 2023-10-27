@@ -1,9 +1,16 @@
 #! /usr/bin/env -S python3 -B
 
+"""
+Dump a selection of Pelican settings in a format that GitHub
+Actions output understands.
+
+Author: Christopher O'Brien <obriencj@gmail.com>
+License: MIT
+"""
+
 
 from pelican import DEFAULT_CONFIG_NAME, parse_arguments
 from pelican.settings import get_settings_from_file
-from os.path import abspath, isfile
 from shlex import quote
 
 
@@ -11,7 +18,7 @@ def get_settings(argv):
     args = parse_arguments(argv)
     conf = args.settings
 
-    if conf is None and isfile(DEFAULT_CONFIG_NAME):
+    if not conf:
         conf = args.settings = DEFAULT_CONFIG_NAME
 
     settings = get_settings_from_file(conf)
@@ -23,7 +30,6 @@ def get_settings(argv):
         ('theme', 'THEME'),
     )
 
-    # this is basically pelican.get_config but without the path expansion
     for attr, key in override:
         val = getattr(args, attr, None)
         if val:
@@ -41,7 +47,7 @@ def main(argv):
     )
 
     for key in wanted:
-        print(f'{key.lower()}={quote(settings.get(key))}')
+        print(f'{key}={quote(settings.get(key))}')
 
 
 if __name__ == '__main__':

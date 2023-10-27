@@ -14,76 +14,83 @@ inputs:
     description: "override pelican settings file"
     required: false
 
-  content:
-    description: "override content directory"
+  path:
+    description: "override source content directory"
     required: false
 
-  output:
+  output-path:
     description: "override output directory"
     required: false
 
   theme:
-    description: "override theme directory"
+    description: "override theme"
     required: false
 
 
 outputs:
   settings:
     description: "Pelican configuration file"
-    value: ${{ steps.settings.outputs.settings }}
+    value: ${{ steps.settings.outputs.SETTINGS }}
 
   path:
     description: "Path that pelican will build from"
-    value: ${{ steps.settings.outputs.path }}
+    value: ${{ steps.settings.outputs.PATH }}
 
   output-path:
     description: "Path that pelican will build into"
-    value: ${{ steps.settings.outputs.output_path }}
+    value: ${{ steps.settings.outputs.OUTPUT_PATH }}
 
   theme:
     description: "Configured THEME"
-    value: ${{ steps.settings.outputs.theme }}
+    value: ${{ steps.settings.outputs.THEME }}
 
   site-url:
     description: "Configured SITEURL"
-    value: ${{ steps.settings.outputs.siteurl }}
+    value: ${{ steps.settings.outputs.SITEURL }}
 
   site-name:
     description: "Configured SITENAME"
-    value: ${{ steps.settings.outputs.sitename }}
+    value: ${{ steps.settings.outputs.SITENAME }}
 
   site-subtitle:
     description: "Configured SITESUBTITLE"
-    value: ${{ steps.settings.outputs.sitesubtitle }}
+    value: ${{ steps.settings.outputs.SITESUBTITLE }}
 
 
 runs:
   using: composite
   steps:
-    - name: Record settings to output
+    - name: Pull pelican-inelegant image
+      shell: bash
+      run: "\
+      podman pull ghcr.io/obriencj/pelican-inelegant\
+        '${{ inputs.version && format(':{0}', inputs.version) }}'
+      podman tag ghcr.io/obriencj/pelican-inelegant\
+        '${{ inputs.version && format(':{0}', inputs.version) }}' \
+        pelican-inelegant"
+
+    - name: Record settings
       id: settings
       shell: bash
       run: "\
       podman run --rm --volume '${{ github.workspace }}':/work \
         --entrypoint /pelican/dump-settings.py \
-        ghcr.io/obriencj/pelican-inelegant:\
-          '${{ inputs.version || 'master' }}' \
+        pelican-inelegant
         ${{ inputs.settings && format('-s''{0}''', inputs.settings) }} \
         ${{ inputs.theme && format('-t''{0}''', inputs.theme) }} \
-        ${{ inputs.output && format('-o''{0}''', inputs.output) }} \
-        ${{ inputs.content && format('''{0}''', inputs.content) }}
+        ${{ inputs.output-path && format('-o''{0}''', inputs.output-path) }} \
+        ${{ inputs.path && format('''{0}''', inputs.path) }}
         >> $GITHUB_OUTPUT"
 
     - name: Build site with pelican
       shell: bash
       run: "\
       podman run --rm --volume '${{ github.workspace }}':/work \
-        ghcr.io/obriencj/pelican-inelegant:\
-          '${{ inputs.version || 'master' }}' \
+        pelican-inelegant
         ${{ inputs.settings && format('-s''{0}''', inputs.settings) }} \
         ${{ inputs.theme && format('-t''{0}''', inputs.theme) }} \
-        ${{ inputs.output && format('-o''{0}''', inputs.output) }} \
-        ${{ inputs.content && format('''{0}''', inputs.content) }}"
+        ${{ inputs.output-path && format('-o''{0}''', inputs.output-path) }} \
+        ${{ inputs.path && format('''{0}''', inputs.path) }}"
 
 
 # The end.
