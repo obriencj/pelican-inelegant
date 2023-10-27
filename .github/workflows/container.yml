@@ -12,6 +12,7 @@ on:
       - static/**
       - source/**
       - templates/**
+      - dump-settings.py
       - gulpfile.babel.js
       - package.json
       - requirements.txt
