@@ -1,26 +1,28 @@
-# InElegant – a modified Elegant theme for Pelican
+# Inelegant – a modified Elegant theme for Pelican
 
 [Elegant] is a theme for the static site generator [Pelican].
 
 [elegant]: https://github.com/Pelican-Elegant/elegant
 [pelican]: https://getpelican.com/
 
-[InElegant] is also a theme for the static site generator Pelican.
-InElegant is based on Elegant, with some tweaks and fixes for
+[Inelegant] is also a theme for the static site generator Pelican.
+Inelegant is based on Elegant, with some tweaks and fixes for
 [my own use].
 
 [inelegant]: https://github.com/obriencj/pelican-inelegant
 [my own use]: https://obriencj.preoccupied.net/
 
-pelican-inelegant provides a container which bundles up the Pelican
-tool, a selection of plugins, and the InElegant theme.
+The pelican-inelegant container provides a repeatable and reliable way
+to rebuild a pelican-base site. It bundles up the Pelican tool, a
+selection of plugins, and the Inelegant theme.
 
-pelican-inelegant also provides a GitHub Action of the same name which
-can be used to trigger the build of a pelican-based site from within a
-workflow.
+The pelican-inelegant [GitHub Action] can be used to easily trigger site
+rebuilds from within a workflow.
+
+[github action]: https://docs.github.com/en/actions
 
 
-## Pelican InElegant Container
+## Pelican Inelegant Container
 
 The container produced by this fork is my way of ensuring that the
 site which builds today will also build tomorrow. It locks into place
@@ -34,7 +36,7 @@ are then copied into the final container which doesn't need node
 installed in order to operate.
 
 
-## Pelican InElegant GitHub Action
+## Pelican Inelegant GitHub Action
 
 The action produced by this fork provides an easy interface for
 invoking the container to rebuild a site for deployment to GitHub
@@ -68,10 +70,9 @@ jobs:
       - name: Deploy site
         id: deploy
         uses: actions/deploy-pages@v2
-
 ```
 
-The github action can be used with any theme, not just InElegant.
+The github action can be used with any theme, not just Inelegant.
 However the theme will need to be available in your workflow checkout.
 The theme path can be specified in the `pelicanconf.py` or via the
 `theme` parameter to the action itself.
@@ -82,13 +83,14 @@ The theme path can be specified in the `pelicanconf.py` or via the
 I liked a lot of what Elegant had to offer, but there were a few
 things that didn't quite fit with my existing site content as I was
 porting from Octopress to Pelican. So of course I had to get in
-there and change some stuff! InElegant is my messy attempt to
+there and change some stuff! Inelegant is my messy attempt to
 turn Elegant into what I needed.
 
 
 ### Overall Git Layout
 
-I dropped the documentation blog, and a number of dependency files.
+I dropped the original documentation blog, and a number of dependency
+files.
 
 I re-organized the js and css sources that were minified/squished
 together to the final js and css so that only the results were
@@ -120,9 +122,15 @@ found annoying. I also didn't like the floating underline being
 produced as a transform/translate. So now images correctly clear and
 can be wrapped around with the `float` attribute.
 
-I also tweaked the footer to center the site title, and added a line
-break between title and subtitle (since some of mine were way too long
-when presented on a single line).
+I removed redundant boundary lines, in particular between the last
+entry in a listing (projects, recent articles) and the footer.
+
+I also tweaked the footer to have a similar gradient to the heading,
+to center the site title.
+
+For articles and pages, I added a line-break between the title and
+subtitle. For pages I added a sidebar to display publication and
+modified dates just like for articles.
 
 
 ### Pages
@@ -150,7 +158,7 @@ soon(ish). I also limited the display of social links to rows of four.
 Elegant is released under the [MIT License]. See their
 [`THANKS.md`][thanks] file for a list of contributors.
 
-InElegant is released under the [MIT License] as was Elegant before it.
+Inelegant is released under the [MIT License] as was Elegant before it.
 
 All code contributions are made directly under the [MIT License] as
 well. This is commonly referred to as the "Inbound=Outbound licensing

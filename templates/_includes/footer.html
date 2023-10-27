@@ -1,17 +1,17 @@
 <footer>
     {% from '_includes/_defaults.html' import SITE_LICENSE with context %}
-    {% if SITE_LICENSE %}
     <div style="width:30%;">
+    {% if SITE_LICENSE %}
         {{ SITE_LICENSE }}
-    </div>
     {% endif %}
+    </div>
 
     {% from '_includes/_defaults.html' import SITESUBTITLE with context %}
-    {% if SITESUBTITLE %}
     <div style="width:40%; text-align: center;">
+    {% if SITESUBTITLE %}
         <span class="site-name">{{ SITENAME }}</span> - {{ SITESUBTITLE }}
-    </div>
     {% endif %}
+    </div>
 
 
     {% if AMAZON_ONELINK or AMAZON_BESTAZON %}
@@ -26,7 +26,7 @@
 
     <div id="fpowered" style="width:30%; text-align: right;">
         Powered by: <a href="https://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow noopener noreferrer">Pelican</a>
-        Theme: <a href="https://github.com/obriencj/pelican-inelegant" title="InElegant Theme Home Page" target="_blank" rel="nofollow noopener noreferrer">InElegant</a>
+        Theme: <a href="https://github.com/obriencj/pelican-inelegant" title="Inelegant Theme Home Page" target="_blank" rel="nofollow noopener noreferrer">Inelegant</a>
         {% if HOSTED_ON and HOSTED_ON.name %}
         Hosted on:
         {% if HOSTED_ON.url %}

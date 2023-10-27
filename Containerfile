@@ -15,7 +15,7 @@ FROM python:3.9
 ARG AUTHOR_EMAIL="obriencj@gmail.com"
 ARG GIT_REPO="https://github.com/obriencj/pelican-inelegant.git"
 ARG GIT_COMMIT=""
-ARG PROJECT_DESC="InElegant themed Pelican site generator"
+ARG PROJECT_DESC="Inelegant themed Pelican site generator"
 ARG PROJECT_NAME="pelican-inelegant"
 ARG PROJECT_URL="https://github.com/obriencj/pelican-inelegant"
 
