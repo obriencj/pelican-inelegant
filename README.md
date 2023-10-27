@@ -42,13 +42,33 @@ pages
 
 ```yaml
 jobs:
-  build-site:
+  build-and-deploy:
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Build site
+        id: pelican-build
         uses: obriencj/pelican-inelegant@master
+
+      - name: Store site
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ${{ steps.pelican-build.outputs.output-path }}
+
+      - name: Deploy site
+        id: deploy
+        uses: actions/deploy-pages@v2
+
 ```
 
 The github action can be used with any theme, not just InElegant.
@@ -57,7 +77,7 @@ The theme path can be specified in the `pelicanconf.py` or via the
 `theme` parameter to the action itself.
 
 
-## Differences from Elegant
+## Changes from Elegant
 
 I liked a lot of what Elegant had to offer, but there were a few
 things that didn't quite fit with my existing site content as I was
