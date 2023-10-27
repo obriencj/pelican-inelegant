@@ -70,30 +70,30 @@ runs:
       shell: bash
       run: "\
       podman tag ghcr.io/obriencj/pelican-inelegant\
-        '${{ inputs.version && format(':{0}', inputs.version) }}' \
+        '${{ inputs.version && format(':{0}', inputs.version) }}'
         pelican-inelegant"
 
     - name: Record settings
       id: settings
       shell: bash
       run: "\
-      podman run --rm --volume '${{ github.workspace }}':/work \
-        --entrypoint /pelican/dump-settings.py \
+      podman run --rm --volume '${{ github.workspace }}':/work
+        --entrypoint /pelican/dump-settings.py
         pelican-inelegant
-        ${{ inputs.settings && format('-s''{0}''', inputs.settings) }} \
-        ${{ inputs.theme && format('-t''{0}''', inputs.theme) }} \
-        ${{ inputs.output-path && format('-o''{0}''', inputs.output-path) }} \
+        ${{ inputs.settings && format('-s''{0}''', inputs.settings) }}
+        ${{ inputs.theme && format('-t''{0}''', inputs.theme) }}
+        ${{ inputs.output-path && format('-o''{0}''', inputs.output-path) }}
         ${{ inputs.path && format('''{0}''', inputs.path) }}
         >> $GITHUB_OUTPUT"
 
     - name: Build site with pelican
       shell: bash
       run: "\
-      podman run --rm --volume '${{ github.workspace }}':/work \
+      podman run --rm --volume '${{ github.workspace }}':/work
         pelican-inelegant
-        ${{ inputs.settings && format('-s''{0}''', inputs.settings) }} \
-        ${{ inputs.theme && format('-t''{0}''', inputs.theme) }} \
-        ${{ inputs.output-path && format('-o''{0}''', inputs.output-path) }} \
+        ${{ inputs.settings && format('-s''{0}''', inputs.settings) }}
+        ${{ inputs.theme && format('-t''{0}''', inputs.theme) }}
+        ${{ inputs.output-path && format('-o''{0}''', inputs.output-path) }}
         ${{ inputs.path && format('''{0}''', inputs.path) }}"
 
 
