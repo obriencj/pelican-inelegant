@@ -53,29 +53,28 @@ All tags used in the {{ SITENAME|striptags|e }} blog.
 </div>
 
 <div class="row-fluid">
-    <div class="span8 offset2">
-        {% for tag, articles in tags|sort %}
-        <h2 id="{{ tag.slug }}-ref" class="tag-title">{{ tag }}</h2>
-        <ul class="list-articles-under-tag-category">
-            {% for article in articles|sort(reverse = true, attribute = 'date') %}
-            <li itemscope>
-                <a href="{{ SITEURL }}/{{ article.url }}">
-                    {{ article.title }}
-                    {% if article.subtitle %}
-                    <small class="subtitle">
-                        {{ article.subtitle }}
-                    </small>
-                    {% endif %}
-                </a>
-                <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">
-                    {{ article.locale_date }}
-                </time>
-            </li>
-            {% endfor %}
-        </ul>
-
-        {% endfor %}
-    </div>
+  <div class="span8 offset2">
+    {% for tag, articles in tags|sort %}
+    <h2 id="{{ tag.slug }}-ref" class="tag-title">{{ tag }}</h2>
+    <ul class="list-articles-under-tag-category">
+      {% for article in articles|sort(reverse = true, attribute = 'date') %}
+      <li itemscope>
+        <a href="{{ SITEURL }}/{{ article.url }}">
+          {{ article.title }}
+          {% if article.subtitle %}
+          <small class="subtitle">
+            {{ article.subtitle }}
+          </small>
+          {% endif %}
+        </a>
+        <time itemprop="dateCreated" datetime="{{ article.date.isoformat() }}">
+          {{ article.locale_date }}
+        </time>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock content %}
