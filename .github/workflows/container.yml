@@ -23,6 +23,7 @@ on:
 
 env:
   image: ghcr.io/${{ github.repository }}
+  cache: ghcr.io/${{ github.repository }}-cache
 
 
 jobs:
@@ -37,9 +38,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Pull previous master
-        run: |
-          podman pull ${{ env.image }}:master
+      - name: Log in to ghcr.io
+        uses: redhat-actions/podman-login@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
 
       - name: Gather metadata
         id: meta
@@ -67,6 +71,9 @@ jobs:
             GIT_COMMIT=${{ github.sha }}
           containerfiles: |
             Containerfile
+          extra-args: |
+            --cache-from=${{ env.cache }}
+            --cache-to=${{ env.cache }}
 
       - name: Publish image
         id: publish
