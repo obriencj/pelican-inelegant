@@ -66,7 +66,7 @@ def entrypoint(argv):
     )
 
     gho = environ.get("GITHUB_OUTPUT", GITHUB_OUTPUT)
-    with open(GITHUB_OUTPUT, "at") as out:
+    with open(gho, "at") as out:
         for key in wanted:
             print(f'{key}={quote(settings.get(key))}', file=out)
 
