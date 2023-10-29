@@ -4,6 +4,11 @@ description: "Build a static site using Pelican Inelegant"
 author: "Christopher O'Brien  <obriencj@gmail.com>"
 
 
+branding:
+  icon: 'layout'
+  color: 'orange'
+
+
 inputs:
   version:
     description: "pelican-inelegant container version"
@@ -60,37 +65,14 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Pull pelican-inelegant image
+    - name: Build site with pelican-inelegant
       shell: bash
       run: "\
-      podman pull ghcr.io/obriencj/pelican-inelegant\
-        '${{ inputs.version && format(':{0}', inputs.version) }}'"
-
-    - name: Tag pelican-inelegant image
-      shell: bash
-      run: "\
-      podman tag ghcr.io/obriencj/pelican-inelegant\
-        '${{ inputs.version && format(':{0}', inputs.version) }}'
-        pelican-inelegant"
-
-    - name: Record settings
-      id: settings
-      shell: bash
-      run: "\
-      podman run --rm --volume '${{ github.workspace }}':/work
-        --entrypoint /pelican/dump-settings.py
-        pelican-inelegant
-        ${{ inputs.settings && format('-s''{0}''', inputs.settings) }}
-        ${{ inputs.theme && format('-t''{0}''', inputs.theme) }}
-        ${{ inputs.output-path && format('-o''{0}''', inputs.output-path) }}
-        ${{ inputs.path && format('''{0}''', inputs.path) }}
-        >> $GITHUB_OUTPUT"
-
-    - name: Build site with pelican
-      shell: bash
-      run: "\
-      podman run --rm --volume '${{ github.workspace }}':/work
-        pelican-inelegant
+      podman run --rm
+        --volume '${{ github.workspace }}':/work
+        --volume \"$GITHUB_OUTPUT\":/pelican/github_output
+        ghcr.io/obriencj/pelican-inelegant\
+          '${{ inputs.version && format(':{0}', inputs.version) }}'
         ${{ inputs.settings && format('-s''{0}''', inputs.settings) }}
         ${{ inputs.theme && format('-t''{0}''', inputs.theme) }}
         ${{ inputs.output-path && format('-o''{0}''', inputs.output-path) }}
