@@ -35,42 +35,44 @@ inputs:
 outputs:
   settings:
     description: "Pelican configuration file"
-    value: ${{ steps.settings.outputs.SETTINGS }}
+    value: ${{ steps.build.outputs.SETTINGS }}
 
   path:
     description: "Path that pelican will build from"
-    value: ${{ steps.settings.outputs.PATH }}
+    value: ${{ steps.build.outputs.PATH }}
 
   output-path:
     description: "Path that pelican will build into"
-    value: ${{ steps.settings.outputs.OUTPUT_PATH }}
+    value: ${{ steps.build.outputs.OUTPUT_PATH }}
 
   theme:
     description: "Configured THEME"
-    value: ${{ steps.settings.outputs.THEME }}
+    value: ${{ steps.build.outputs.THEME }}
 
   site-url:
     description: "Configured SITEURL"
-    value: ${{ steps.settings.outputs.SITEURL }}
+    value: ${{ steps.build.outputs.SITEURL }}
 
   site-name:
     description: "Configured SITENAME"
-    value: ${{ steps.settings.outputs.SITENAME }}
+    value: ${{ steps.build.outputs.SITENAME }}
 
   site-subtitle:
     description: "Configured SITESUBTITLE"
-    value: ${{ steps.settings.outputs.SITESUBTITLE }}
+    value: ${{ steps.build.outputs.SITESUBTITLE }}
 
 
 runs:
   using: composite
   steps:
     - name: Build site with pelican-inelegant
+      id: build
       shell: bash
       run: "\
       podman run --rm
         --volume '${{ github.workspace }}':/work
-        --volume \"$GITHUB_OUTPUT\":/pelican/github_output
+        --volume $GITHUB_OUTPUT:/pelican/github_output
+        --env GITHUB_OUTPUT=/pelican/github_output
         ghcr.io/obriencj/pelican-inelegant\
           '${{ inputs.version && format(':{0}', inputs.version) }}'
         ${{ inputs.settings && format('-s''{0}''', inputs.settings) }}

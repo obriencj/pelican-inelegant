@@ -9,6 +9,7 @@ License: MIT
 """
 
 
+from os import environ
 from pelican import DEFAULT_CONFIG_NAME, main, parse_arguments
 from pelican.settings import get_settings_from_file
 from shlex import quote
@@ -17,7 +18,7 @@ from shlex import quote
 # we're expecting this file to be provided as a volume mount when
 # invoked as an action. If it's not mounted, then we'll just create it
 # and it can be ignored.
-OUTPUT_VARS = "/pelican/github_output"
+GITHUB_OUTPUT = "/pelican/github_output"
 
 
 def get_settings(argv):
@@ -64,7 +65,8 @@ def entrypoint(argv):
         'THEME', 'SITEURL', 'SITENAME', 'SITESUBTITLE',
     )
 
-    with open(OUTPUT_VARS, "at") as out:
+    gho = environ.get("GITHUB_OUTPUT", GITHUB_OUTPUT)
+    with open(GITHUB_OUTPUT, "at") as out:
         for key in wanted:
             print(f'{key}={quote(settings.get(key))}', file=out)
 
