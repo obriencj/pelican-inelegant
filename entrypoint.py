@@ -9,12 +9,24 @@ License: MIT
 """
 
 
-from pelican import DEFAULT_CONFIG_NAME, parse_arguments
+from pelican import DEFAULT_CONFIG_NAME, main, parse_arguments
 from pelican.settings import get_settings_from_file
 from shlex import quote
 
 
+# we're expecting this file to be provided as a volume mount when
+# invoked as an action. If it's not mounted, then we'll just create it
+# and it can be ignored.
+OUTPUT_VARS = "/pelican/github_output"
+
+
 def get_settings(argv):
+    """
+    Load settings in a manner similar to pelican, but without
+    expanding to absolute paths, and without erroring out if theme
+    isn't found. We just want to get the settings, not act on them.
+    """
+
     args = parse_arguments(argv)
     conf = args.settings
 
@@ -38,7 +50,13 @@ def get_settings(argv):
     return settings
 
 
-def main(argv):
+def entrypoint(argv):
+    """
+    Fetch and record the settings, then invoke pelican. This is
+    essentially just a thin wrapper to make sure we can get our
+    computed settings recorded for the github action output.
+    """
+
     settings = get_settings(argv)
 
     wanted = (
@@ -46,13 +64,17 @@ def main(argv):
         'THEME', 'SITEURL', 'SITENAME', 'SITESUBTITLE',
     )
 
-    for key in wanted:
-        print(f'{key}={quote(settings.get(key))}')
+    with open(OUTPUT_VARS, "at") as out:
+        for key in wanted:
+            print(f'{key}={quote(settings.get(key))}', file=out)
+
+    return main(argv) or 0
 
 
 if __name__ == '__main__':
     import sys
-    main(sys.argv[1:])
+    sys.argv[0] = "pelican"  # lie a little
+    sys.exit(entrypoint(sys.argv[1:]))
 
 
 # The end.

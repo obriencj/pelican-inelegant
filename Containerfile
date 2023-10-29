@@ -12,7 +12,6 @@ RUN npx gulp
 
 FROM python:3.9
 
-
 # Need this for the pelican-image-process plugin, or else our photos
 # will lose their EXIF orientation data
 RUN apt-get update ; apt-get install -y exiftool
@@ -46,7 +45,7 @@ RUN pelican-themes -i /pelican/inelegant
 
 # This script enables the github action to produce outputs reflecting
 # the settings used
-COPY dump-settings.py .
+COPY entrypoint.py .
 
 
 # since Pelican configurations are loaded as python modules, let's
@@ -56,7 +55,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 
 # launch this container with the site checkout mounted as /work
 WORKDIR /work
-ENTRYPOINT ["pelican"]
+ENTRYPOINT ["/pelican/entrypoint.py"]
 CMD []
 
 
