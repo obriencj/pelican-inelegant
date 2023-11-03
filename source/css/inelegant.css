@@ -112,4 +112,35 @@ footer {
 }
 
 
+/* fixing code scrolling. Note that this is presuming that the
+   markdown codehilite extension is configured to use css_class
+   named "highlight" */
+
+.highlight {
+  overflow-y: auto;
+  white-space: pre;
+  word-wrap: unset;
+}
+
+.highlight pre {
+  box-sizing: border-box;
+  line-break: unset;
+  white-space: pre;
+  width: 100%;
+  word-break: unset;
+  word-wrap: unset;
+}
+
+.highlight code {
+  text-align: left;
+  white-space: pre;
+}
+
+.highlight span {
+  text-align: left;
+  word-wrap: unset;
+  white-space: nowrap;
+}
+
+
 /* The end. */
