@@ -10,7 +10,7 @@ COPY source/ /build/source/
 RUN npx gulp
 
 
-FROM python:3.9
+FROM python:3.11
 
 # Need this for the pelican-image-process plugin, or else our photos
 # will lose their EXIF orientation data
