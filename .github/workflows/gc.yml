@@ -1,0 +1,27 @@
+name: Remove untagged images
+
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 2 * * *"
+
+
+env:
+  image: ghcr.io/${{ github.repository }}
+
+
+jobs:
+  remove-package-versions:
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: write
+
+    steps:
+      - uses: camargo/delete-untagged-action@v1
+        with:
+          github-token: ${{ github.token }}
+
+
+# The end.
