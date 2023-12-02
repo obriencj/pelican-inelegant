@@ -1,7 +1,6 @@
 
 div.recent-posts-posted a {
   color: inherit;
-  padding-left: 0.3em;
   &:hover {
     border-bottom: 1px dashed;
     text-decoration: none;
