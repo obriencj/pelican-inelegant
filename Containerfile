@@ -1,3 +1,11 @@
+# Multi-stage Containerfile for building the pelican-inelegant
+# container, as used by the pelican-inelegant github action.
+
+
+# pelican-inelegant inherits some node dependencies from the original
+# elegant theme. In order to produce the final CSS and minified JS,
+# we'll use a node container
+
 FROM node:20 AS BUILD
 
 WORKDIR /build
@@ -9,6 +17,11 @@ COPY gulpfile.babel.js .
 COPY source/ /build/source/
 RUN npx gulp
 
+
+# pelican-inelegant includes a selection of plugins pre-installed.
+# These are the git-based pelican plugins. We won't have git available
+# in the final container, so let's use a stage just to fetch and prune
+# the plugins git repository.
 
 FROM ubuntu:latest AS PLUGINS
 
@@ -26,6 +39,7 @@ RUN rm -rf /pelican/plugins/.git \
            /pelican/plugins/series
 
 
+# the final pelican-inelegant container itself
 
 FROM python:3.11-alpine
 
@@ -60,14 +74,14 @@ ENV \
 # Need exiftool for the pelican-image-process plugin, or else our photos
 # will lose their EXIF orientation data. We need git to pull down the
 # plugins repo
-RUN apk update && apk add exiftool
+RUN apk add --no-cache exiftool
 
 
 WORKDIR /pelican
 
 # Install pelican and available plugins
 COPY requirements.txt .
-RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy git-based plugins
 COPY --from=PLUGINS /pelican/plugins/ /pelican/plugins/
