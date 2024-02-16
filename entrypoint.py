@@ -1,4 +1,4 @@
-#! /usr/bin/env -S python3 -B
+#! /usr/bin/env python3
 
 """
 Dump a selection of Pelican settings in a format that GitHub
@@ -79,7 +79,12 @@ def entrypoint(argv):
 
     # then actually invoke pelican with the same arguments and let it
     # do its thing
-    return main(argv) or 0
+    try:
+        return main(argv) or 0
+
+    except KeyboardInterrupt:
+        print("Interrupted")
+        return 130
 
 
 if __name__ == '__main__':
