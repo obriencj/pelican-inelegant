@@ -1,13 +1,18 @@
-#! /usr/bin/env -S python3 -B
+#! /usr/bin/env python3
+
 
 """
-Dump a selection of Pelican settings in a format that GitHub
-Actions output understands.
+Entrypoint script for the pelican-inelegant container. Dumps a
+selection of Pelican settings in a format that GitHub Actions output
+understands at the file path indicated in the GITHUB_OUTPUT
+environment variable.
 
 Author: Christopher O'Brien <obriencj@gmail.com>
 License: MIT
 """
 
+
+import sys
 
 from os import environ
 from pelican import DEFAULT_CONFIG_NAME, main, parse_arguments
@@ -72,18 +77,23 @@ def record_settings(settings):
 
 def entrypoint(argv):
     # essentially just a thin wrapper to make sure we can get our
-    # computed settings recorded for the github action output.
+    # computed settings recorded for the github action output prior to
+    # the actual pelican invocation.
 
-    # load settings and record some of them to file
-    record_settings(get_settings(argv))
+    try:
+        # load settings and record some of them to file
+        record_settings(get_settings(argv))
 
-    # then actually invoke pelican with the same arguments and let it
-    # do its thing
-    return main(argv) or 0
+        # then actually invoke pelican with the same arguments and let
+        # it do its thing
+        return main(argv) or 0
+
+    except KeyboardInterrupt:
+        print("Interrupted", file=sys.stderr)
+        return 130
 
 
 if __name__ == '__main__':
-    import sys
     sys.argv[0] = "pelican"  # lie a little
     sys.exit(entrypoint(sys.argv[1:]))
 
