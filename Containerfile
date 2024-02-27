@@ -21,7 +21,8 @@ RUN npx gulp
 # pelican-inelegant includes a selection of plugins pre-installed.
 # These are the git-based pelican plugins. We won't have git available
 # in the final container, so let's use a stage just to fetch and prune
-# the plugins git repository.
+# the plugins git repository. Note that we're not using ADD as
+# currently buildah doesn't support git refs
 
 FROM ubuntu:latest AS PLUGINS
 
@@ -66,6 +67,8 @@ LABEL \
 
 
 ENV \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
     PIP_ROOT_USER_ACTION=ignore \
     PLUGIN_PATHS=/pelican/plugins \
     PYTHONDONTWRITEBYTECODE=1
@@ -81,16 +84,16 @@ WORKDIR /pelican
 
 # Install pelican and available plugins
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 # Copy git-based plugins
-COPY --from=PLUGINS /pelican/plugins/ /pelican/plugins/
+COPY --from=PLUGINS /pelican/plugins/ ./plugins/
 
 # Copy and install theme
-COPY --from=BUILD /build/static/ /pelican/inelegant/static/
-COPY static/ /pelican/inelegant/static/
-COPY templates/ /pelican/inelegant/templates/
-RUN pelican-themes -i /pelican/inelegant
+COPY --from=BUILD /build/static/ ./inelegant/static/
+COPY static/ ./inelegant/static/
+COPY templates/ ./inelegant/templates/
+RUN pelican-themes -i inelegant && rm -rf inelegant
 
 # This script enables the github action to produce outputs reflecting
 # the settings used
