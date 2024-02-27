@@ -3,6 +3,7 @@
   "license": "MIT",
   "resolutions": {
     "chokidar": "^3.5.3",
+    "es5-ext": "^0.10.63",
     "glob-parent": "^6.0.2",
     "postcss": "^8.4.31"
   },
