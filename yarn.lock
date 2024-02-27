@@ -3849,7 +3849,7 @@ postcss-unique-selectors@^5.1.1:
   dependencies:
     postcss-selector-parser "^6.0.5"
 
-postcss-value-parser@^4.1.0, postcss-value-parser@^4.2.0:
+postcss-value-parser@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
@@ -4094,12 +4094,12 @@ ret@~0.1.10:
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
   integrity sha512-TTlYpa+OL+vMMNG24xSlQGEJ3B/RzEfUlLct7b5G/ytav+wPrplCpVMFuwzXbkecJrb6IYo1iFb0S9v37754mg==
 
-rfs@^9.0.6:
-  version "9.0.6"
-  resolved "https://registry.yarnpkg.com/rfs/-/rfs-9.0.6.tgz#ac5522ea440a762efcbdb181367e7b3f163778af"
-  integrity sha512-KQ0EGVP4l3B3ynUZ1UNX3UoRAeswiX+ljGRcT+MoJKXRwXSUFpVZIPsqurH9pmY/AOGBFq7KKBq9fhRCkkg+SQ==
+rfs@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/rfs/-/rfs-10.0.0.tgz#e34e31df5357c7371f9469f5ae73bfc47769121f"
+  integrity sha512-Iu0N8fGAHDE6NZSc+S1aaY9ClaqkOdko+NvAstUS5sxRnzUgV20Ak0cOsMEP/vyYdzM3DOUOPKXH4XhfzMthvw==
   dependencies:
-    postcss-value-parser "^4.1.0"
+    postcss-value-parser "^4.2.0"
 
 safe-buffer@^5.1.0, safe-buffer@~5.2.0:
   version "5.2.1"
