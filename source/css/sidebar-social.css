@@ -1,4 +1,4 @@
-div#sidebar-social-link a svg {
+div#sidebar-social-link a img {
     filter: saturate(0%) brightness(0.7);
     height: 20px;
     width: 20px;
@@ -10,7 +10,7 @@ div#sidebar-social-link a svg {
 div#sidebar-social-link a {
     text-decoration: none;
 }
-div#sidebar-social-link a svg:hover {
+div#sidebar-social-link a:hover img {
     filter: none;
     transform: scale(2.5);
     z-index: 1;
