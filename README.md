@@ -149,8 +149,27 @@ Copy feature, so I ripped that out.
 
 ### Additional social links
 
-I added a Strava social link, and will be adding a Threads one
-soon(ish). I also limited the display of social links to rows of four.
+I migrated the social SVG sources into CSS rather than being embedded
+in every single page with a sidebar. I added [Discord], [Strava],
+[Bluesky], [Threads], and [TikTok] support. I also updated the
+[Keybase] image which looked really weird, and added [X] as rebranded
+alternative for [Twitter].
+
+[discord]: https://discord.com
+
+[strava]: https://strava.com
+
+[bluesky]: https://bsky.app
+
+[threads]: https://threads.net
+
+[tiktok]: https://tiktok.com
+
+[keybase]: https://keybase.io
+
+[x]: https://x.com
+
+[twitter]: https://twitter.com
 
 
 ## License
