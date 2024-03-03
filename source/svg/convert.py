@@ -14,7 +14,7 @@ import sys
 from argparse import ArgumentParser
 from json import dump
 from pkg_resources import resource_listdir, resource_string
-from typing import Dict, Sequence, Tuple
+from typing import Dict, List, Sequence, Tuple
 from urllib.parse import quote
 
 
