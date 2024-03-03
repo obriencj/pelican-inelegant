@@ -10,12 +10,12 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      dependencies:
-        dependency-type: "production"
+      pip-dependencies:
+        dependency-type: "all"
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
     groups:
-      dependencies:
-        dependency-type: "production"
+      npm-dependencies:
+        dependency-type: "all"
