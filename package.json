@@ -11,7 +11,7 @@
     "@babel/core": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
     "@babel/register": "^7.22.15",
-    "cssnano": "^5.1.12",
+    "cssnano": "^6.0.5",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^10.0.0",
