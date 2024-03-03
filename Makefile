@@ -41,6 +41,17 @@ upgrade: upgrade-requirements upgrade-yarn
 ##@ Build
 
 
+source/css/svg.css:	source/svg/*.svg
+	source/svg/convert.py > "$@"
+
+
+svg: source/css/svg.css
+
+
+clean-svg:
+	@rm -f source/css/svg.css
+
+
 source/css/%.css: source/bootstrap/%.less
 	@lesscpy "$<" "$@"
 
@@ -52,12 +63,15 @@ clean-bootstrap:
 	@rm -f $(BOOTSTRAP_CSS)
 
 
+css: bootstrap svg  ## Regenerate bootstrap.css and svg.css if needed
+
+
 container:	## Build the pelican-inelegant:latest container
 	@podman build . -f Containerfile \
 	  --tag 'pelican-inelegant:latest'
 
 
-.PHONY: bootstrap clean-bootstrap container dependencies gulp help upgrade
+.PHONY: bootstrap clean-bootstrap container css dependencies gulp help svg upgrade
 
 
 # The end.
