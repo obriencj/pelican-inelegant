@@ -5,7 +5,7 @@ Invoked by the Makefile to construct a CSS embedding the SVG data
 from the files in this directory.
 
 Author: Christopher O'Brien  <obriencj@gmail.com>
-Licsense: GPLv3
+Licsense: MIT
 """
 
 
