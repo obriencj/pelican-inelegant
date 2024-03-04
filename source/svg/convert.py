@@ -28,13 +28,12 @@ def load_one(name: str) -> Tuple[str, str]:
     return name, resource_string(__name__, fname).decode()
 
 
-def load(names: Sequence[str]) -> Dict[str, str]:
+def load(names: Sequence[str] = None) -> Dict[str, str]:
+    if not names:
+        names = filter(lambda s: s.endswith(".svg"),
+                       resource_listdir(__name__, "./"))
+
     return dict(map(load_one, names))
-
-
-def load_all() -> Dict[str, str]:
-    return load(filter(lambda s: s.endswith(".svg"),
-                       resource_listdir(__name__, "./")))
 
 
 def css_url_encode(svg: str, mimetype="image/svg+xml") -> str:
@@ -43,7 +42,7 @@ def css_url_encode(svg: str, mimetype="image/svg+xml") -> str:
 
 def cli(options) -> None:
 
-    loaded = load(options.names) if options.names else load_all()
+    loaded = load(options.names)
 
     if options.json:
         dump(loaded, sys.stdout)
