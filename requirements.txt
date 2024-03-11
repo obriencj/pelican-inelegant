@@ -34,7 +34,7 @@ feedgenerator==2.1.0
     # via pelican
 idna==3.6
     # via anyio
-ipython==8.22.1
+ipython==8.22.2
     # via pelican-liquid-tags
 jedi==0.19.1
     # via ipython
@@ -56,7 +56,7 @@ jupyter-core==5.7.1
     #   nbformat
 jupyterlab-pygments==0.3.0
     # via nbconvert
-lxml==4.9.4
+lxml==5.1.0
     # via pelican-image-process
 markdown==3.5.2
     # via
@@ -76,7 +76,7 @@ mistune==3.0.2
     # via nbconvert
 nbclient==0.9.0
     # via nbconvert
-nbconvert==7.16.1
+nbconvert==7.16.2
     # via pelican-liquid-tags
 nbformat==5.9.2
     # via
@@ -84,7 +84,7 @@ nbformat==5.9.2
     #   nbconvert
 ordered-set==4.1.0
     # via pelican
-packaging==23.2
+packaging==24.0
     # via nbconvert
 pandocfilters==1.5.1
     # via nbconvert
@@ -97,7 +97,7 @@ pelican[markdown]==4.9.1
     #   pelican-liquid-tags
     #   pelican-series
     #   pelican-yaml-metadata
-pelican-image-process==3.0.3
+pelican-image-process==3.0.4
     # via -r requirements.in
 pelican-liquid-tags==1.0.4
     # via -r requirements.in
@@ -148,7 +148,6 @@ six==1.16.0
     # via
     #   asttokens
     #   bleach
-    #   pelican-image-process
     #   python-dateutil
 sniffio==1.3.1
     # via anyio

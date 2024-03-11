@@ -27,12 +27,10 @@ requirements.txt: requirements.in
 
 upgrade-requirements:	## Upgrade requirements.txt
 	@pip-compile --upgrade
-	@git add requirements.txt
 
 
 upgrade-yarn:	## Upgrade yarn.lock
 	@yarn --upgrade
-	@git add yarn.lock
 
 
 upgrade: upgrade-requirements upgrade-yarn
