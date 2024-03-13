@@ -40,7 +40,7 @@ upgrade: upgrade-requirements upgrade-yarn
 
 
 source/css/svg.css:	source/svg/*.svg
-	source/svg/convert.py > "$@"
+	@source/svg/convert.py > "$@"
 
 
 svg: source/css/svg.css
