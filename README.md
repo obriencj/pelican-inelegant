@@ -63,13 +63,13 @@ jobs:
         uses: obriencj/pelican-inelegant@master
 
       - name: Store site
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ steps.pelican-build.outputs.output-path }}
 
       - name: Deploy site
         id: deploy
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
 ```
 
 The github action can be used with any theme, not just Inelegant.
