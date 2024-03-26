@@ -64,7 +64,7 @@ clean-bootstrap:
 css: bootstrap svg  ## Regenerate bootstrap.css and svg.css if needed
 
 
-container:	## Build the pelican-inelegant:latest container
+container:  requirements.txt	## Build the pelican-inelegant:latest container
 	@podman build . -f Containerfile \
 	  --tag 'pelican-inelegant:latest'
 

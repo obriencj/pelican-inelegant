@@ -15,8 +15,7 @@ const minifyJS = () => {
     return src([
         "source/applause-button/applause-button.js",
         "source/js/create-instagram-gallery.js",
-        "source/js/lunr-search-result.js",
-        "source/lunr/lunr.js",
+        "source/js/stork.js",
         "source/photoswipe/photoswipe.js",
         "source/photoswipe/photoswipe-ui-default.js",
         "source/photoswipe/photoswipe-array-from-dom.js",
