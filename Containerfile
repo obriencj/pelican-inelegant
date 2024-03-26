@@ -36,17 +36,21 @@ RUN rm -rf /pelican/plugins/.git \
 
 FROM rust:alpine AS STORK
 
-ARG STORKVER=1.6.0
-
 WORKDIR /stork
 
 ENV RUSTFLAGS="-Clink-arg=-s -Cstrip=symbols -Ctarget-feature=-crt-static"
 
-RUN apk add --no-cache build-base openssl openssl-dev pkgconf wget && \
-  cargo install stork-search@"$STORKVER" --root /stork && \
-  wget https://files.stork-search.net/releases/v$STORKVER/stork.js && \
-  wget https://files.stork-search.net/releases/v$STORKVER/stork.wasm && \
-  wget https://files.stork-search.net/releases/v$STORKVER/basic.css
+ARG STORKVER=1.6.0
+
+RUN apk add --no-cache build-base openssl openssl-dev pkgconf && \
+  cargo install stork-search@"$STORKVER" --root /stork
+
+RUN apk add --no-cache wget && \
+  wget https://files.stork-search.net/releases/v"$STORKVER"/stork.js && \
+  wget https://files.stork-search.net/releases/v"$STORKVER"/stork.js.map && \
+  wget https://files.stork-search.net/releases/v"$STORKVER"/stork.wasm && \
+  wget https://files.stork-search.net/releases/v"$STORKVER"/basic.css && \
+  wget https://files.stork-search.net/releases/v"$STORKVER"/dark.css
 
 
 # pelican-inelegant inherits some node dependencies from the original

@@ -58,7 +58,7 @@ jupyterlab-pygments==0.3.0
     # via nbconvert
 lxml==5.1.0
     # via pelican-image-process
-markdown==3.5.2
+markdown==3.6
     # via
     #   pelican
     #   pelican-yaml-metadata
@@ -76,9 +76,9 @@ mistune==3.0.2
     # via nbconvert
 nbclient==0.10.0
     # via nbconvert
-nbconvert==7.16.2
+nbconvert==7.16.3
     # via pelican-liquid-tags
-nbformat==5.10.2
+nbformat==5.10.3
     # via
     #   nbclient
     #   nbconvert
@@ -137,7 +137,7 @@ pyyaml==6.0.1
     # via pelican-yaml-metadata
 pyzmq==25.1.2
     # via jupyter-client
-referencing==0.33.0
+referencing==0.34.0
     # via
     #   jsonschema
     #   jsonschema-specifications

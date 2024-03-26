@@ -59,7 +59,9 @@
             {% endif %}
             {% import '_includes/translations.html' as translations with context %}
             {{ translations.translations_for(article) }}
-            {{ article.content }}
+            <main>
+              {{ article.content }}
+            </main>
 
             {% if article.photo_gallery %}
             <div class="gallery">
