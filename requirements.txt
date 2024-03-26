@@ -95,11 +95,14 @@ pelican[markdown]==4.9.1
     #   -r requirements.in
     #   pelican-image-process
     #   pelican-liquid-tags
+    #   pelican-search
     #   pelican-series
     #   pelican-yaml-metadata
 pelican-image-process==3.0.4
     # via -r requirements.in
 pelican-liquid-tags==1.0.4
+    # via -r requirements.in
+pelican-search==1.1.0
     # via -r requirements.in
 pelican-series==2.1.0
     # via -r requirements.in
@@ -144,6 +147,8 @@ rpds-py==0.18.0
     # via
     #   jsonschema
     #   referencing
+rtoml==0.9.0
+    # via pelican-search
 six==1.16.0
     # via
     #   asttokens

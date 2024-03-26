@@ -4,6 +4,7 @@ pelican[markdown]
 # Some plugins
 pelican-image-process
 pelican-liquid-tags
+pelican-search
 pelican-series
 pelican-yaml-metadata
 
