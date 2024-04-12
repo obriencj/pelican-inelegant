@@ -32,7 +32,7 @@ fastjsonschema==2.19.1
     # via nbformat
 feedgenerator==2.1.0
     # via pelican
-idna==3.6
+idna==3.7
     # via anyio
 ipython==8.22.2
     # via pelican-liquid-tags
