@@ -116,7 +116,8 @@ WORKDIR /pelican
 
 # Install pelican and available plugins
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt && \
+  pip3 install --force rtoml
 
 # Copy git-based plugins
 COPY --from=PLUGINS /pelican/plugins/ ./plugins/
