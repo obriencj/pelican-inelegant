@@ -11,15 +11,15 @@
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
     "@babel/register": "^7.24.6",
-    "cssnano": "^7.0.2",
+    "cssnano": "^7.0.3",
     "gulp": "^5.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^10.0.0",
     "gulp-run-command": "^0.0.10",
     "gulp-terser": "^2.1.0",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.39",
     "postcss-font-magician": "^4.0.0",
-    "postcss-preset-env": "^9.5.14",
+    "postcss-preset-env": "^9.5.15",
     "rfs": "^10.0.0"
   },
   "babel": {
