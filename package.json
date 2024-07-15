@@ -8,8 +8,8 @@
     "postcss": "^8.4.31"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.7",
-    "@babel/preset-env": "^7.24.7",
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
     "@babel/register": "^7.24.6",
     "cssnano": "^7.0.4",
     "gulp": "^5.0.0",
