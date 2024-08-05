@@ -6,7 +6,7 @@
 # elegant theme. In order to produce the final CSS and minified JS,
 # we'll use a node container
 
-FROM node:20 AS BUILD
+FROM docker.io/node:20 AS BUILD
 
 WORKDIR /build
 
@@ -24,12 +24,11 @@ RUN npx gulp
 # the plugins git repository. Note that we're not using ADD as
 # currently buildah doesn't support git refs
 
-FROM ubuntu:latest AS PLUGINS
+FROM docker.io/alpine/git AS PLUGINS
 
 WORKDIR /pelican
 
-RUN apt-get update && apt-get install -y git && \
-  git clone --depth=1 --single-branch --branch master --no-tags \
+RUN git clone --depth=1 --single-branch --branch master --no-tags \
   https://github.com/getpelican/pelican-plugins.git /pelican/plugins
 
 # We installed these plugins via requirements.txt, and don't want
@@ -42,7 +41,7 @@ RUN rm -rf /pelican/plugins/.git \
 
 # the final pelican-inelegant container itself
 
-FROM python:3.11-alpine
+FROM docker.io/python:3.11-alpine
 
 ARG AUTHOR_EMAIL="obriencj@gmail.com"
 ARG GIT_REPO="https://github.com/obriencj/pelican-inelegant.git"
@@ -75,14 +74,13 @@ ENV \
 
 
 # Need exiftool for the pelican-image-process plugin, or else our photos
-# will lose their EXIF orientation data. We need git to pull down the
-# plugins repo
+# will lose their EXIF orientation data.
 RUN apk add --no-cache exiftool
 
 
 WORKDIR /pelican
 
-# Install pelican and available plugins
+# Install pelican and plugins from PyPI
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
@@ -103,7 +101,6 @@ COPY entrypoint.py .
 # launch this container with the site checkout mounted as /work
 WORKDIR /work
 ENTRYPOINT ["/pelican/entrypoint.py"]
-CMD []
 
 
 # The end.

@@ -65,7 +65,7 @@ css: bootstrap svg  ## Regenerate bootstrap.css and svg.css if needed
 
 
 container:	## Build the pelican-inelegant:latest container
-	@podman build . -f Containerfile \
+	@podman build --pull . -f Containerfile \
 	  --tag 'pelican-inelegant:latest'
 
 
