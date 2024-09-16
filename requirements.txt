@@ -92,7 +92,7 @@ pandocfilters==1.5.1
     # via nbconvert
 parso==0.8.4
     # via jedi
-pelican[markdown]==4.9.1
+pelican[markdown]==4.10.0
     # via
     #   -r requirements.in
     #   pelican-image-process
