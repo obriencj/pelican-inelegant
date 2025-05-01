@@ -19,7 +19,7 @@
     "gulp-terser": "^2.1.0",
     "postcss": "^8.5.3",
     "postcss-font-magician": "^4.0.0",
-    "postcss-preset-env": "^10.1.5",
+    "postcss-preset-env": "^10.1.6",
     "rfs": "^10.0.0"
   },
   "babel": {
