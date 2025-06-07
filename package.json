@@ -8,18 +8,18 @@
     "postcss": "^8.4.31"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.1",
+    "@babel/core": "^7.27.4",
     "@babel/preset-env": "^7.27.2",
     "@babel/register": "^7.27.1",
     "cssnano": "^7.0.7",
-    "gulp": "^5.0.0",
+    "gulp": "^5.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^10.0.0",
     "gulp-run-command": "^0.0.10",
     "gulp-terser": "^2.1.0",
-    "postcss": "^8.5.3",
+    "postcss": "^8.5.4",
     "postcss-font-magician": "^4.0.0",
-    "postcss-preset-env": "^10.1.6",
+    "postcss-preset-env": "^10.2.0",
     "rfs": "^10.0.0"
   },
   "babel": {
