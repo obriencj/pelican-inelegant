@@ -17,9 +17,7 @@ beautifulsoup4==4.13.4
     #   nbconvert
     #   pelican-image-process
 bleach[css]==6.2.0
-    # via
-    #   bleach
-    #   nbconvert
+    # via nbconvert
 blinker==1.9.0
     # via pelican
 decorator==5.2.1
@@ -113,7 +111,7 @@ pelican-yaml-metadata==2.1.2
     # via -r requirements.in
 pexpect==4.9.0
     # via ipython
-pillow==11.2.1
+pillow==11.3.0
     # via pelican-image-process
 platformdirs==4.3.8
     # via jupyter-core
