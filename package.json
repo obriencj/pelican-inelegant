@@ -8,7 +8,7 @@
     "postcss": "^8.4.31"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.3",
+    "@babel/core": "^7.28.4",
     "@babel/preset-env": "^7.28.3",
     "@babel/register": "^7.28.3",
     "cssnano": "^7.1.1",
@@ -19,7 +19,7 @@
     "gulp-terser": "^2.1.0",
     "postcss": "^8.5.6",
     "postcss-font-magician": "^4.0.0",
-    "postcss-preset-env": "^10.3.0",
+    "postcss-preset-env": "^10.4.0",
     "rfs": "^10.0.0"
   },
   "babel": {
