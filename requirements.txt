@@ -25,9 +25,7 @@ decorator==5.2.1
 defusedxml==0.7.1
     # via nbconvert
 docutils==0.21.2
-    # via
-    #   pelican
-    #   pelican-series
+    # via pelican
 executing==2.2.0
     # via stack-data
 fastjsonschema==2.21.1
@@ -105,7 +103,7 @@ pelican-image-process==3.1.0
     # via -r requirements.in
 pelican-liquid-tags==1.0.4
     # via -r requirements.in
-pelican-series==3.0.0
+pelican-series==3.1.0
     # via -r requirements.in
 pelican-yaml-metadata==2.1.2
     # via -r requirements.in
