@@ -60,7 +60,7 @@ jupyterlab-pygments==0.3.0
     # via nbconvert
 lxml==5.4.0
     # via pelican-image-process
-markdown==3.8
+markdown==3.8.1
     # via
     #   pelican
     #   pelican-yaml-metadata
