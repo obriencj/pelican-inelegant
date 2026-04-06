@@ -103,7 +103,7 @@ pelican-image-process==3.3.0
     # via -r requirements.in
 pelican-liquid-tags==1.0.4
     # via -r requirements.in
-pelican-series==3.1.0
+pelican-series==3.1.1
     # via -r requirements.in
 pelican-yaml-metadata==2.1.2
     # via -r requirements.in
