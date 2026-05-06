@@ -58,7 +58,7 @@ jupyter-core==5.7.2
     #   nbformat
 jupyterlab-pygments==0.3.0
     # via nbconvert
-lxml==5.4.0
+lxml==6.1.0
     # via pelican-image-process
 markdown==3.8.1
     # via
