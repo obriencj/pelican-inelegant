@@ -9,9 +9,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.3",
+    "@babel/preset-env": "^7.29.5",
     "@babel/register": "^7.29.3",
-    "cssnano": "^7.1.9",
+    "cssnano": "^8.0.1",
     "gulp": "^5.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^10.0.0",
