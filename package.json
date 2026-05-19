@@ -9,9 +9,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.3",
+    "@babel/preset-env": "^7.29.5",
     "@babel/register": "^7.29.3",
-    "cssnano": "^7.1.9",
+    "cssnano": "^8.0.1",
     "gulp": "^5.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-postcss": "^10.0.0",
@@ -19,7 +19,7 @@
     "gulp-terser": "^2.1.0",
     "postcss": "^8.5.14",
     "postcss-font-magician": "^4.0.0",
-    "postcss-preset-env": "^11.2.1",
+    "postcss-preset-env": "^11.3.0",
     "rfs": "^10.0.0"
   },
   "babel": {
