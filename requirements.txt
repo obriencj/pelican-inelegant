@@ -99,7 +99,7 @@ pelican[markdown]==4.12.0
     #   pelican-liquid-tags
     #   pelican-series
     #   pelican-yaml-metadata
-pelican-image-process==3.3.0
+pelican-image-process==3.4.0
     # via -r requirements.in
 pelican-liquid-tags==1.0.4
     # via -r requirements.in
