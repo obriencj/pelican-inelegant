@@ -16,7 +16,7 @@ beautifulsoup4==4.13.4
     # via
     #   nbconvert
     #   pelican-image-process
-bleach[css]==6.2.0
+bleach[css]==6.4.0
     # via nbconvert
 blinker==1.9.0
     # via pelican
