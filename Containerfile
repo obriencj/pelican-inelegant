@@ -6,14 +6,14 @@
 # elegant theme. In order to produce the final CSS and minified JS,
 # we'll use a node container
 
-FROM docker.io/node:20 AS BUILD
+FROM docker.io/node:24 AS BUILD
 
 WORKDIR /build
 
-COPY package.json yarn.lock .
+COPY package.json yarn.lock ./
 RUN yarnpkg
 
-COPY gulpfile.babel.js .
+COPY gulpfile.babel.js ./
 COPY source/ /build/source/
 RUN npx gulp
 
@@ -41,7 +41,7 @@ RUN rm -rf /pelican/plugins/.git \
 
 # the final pelican-inelegant container itself
 
-FROM docker.io/python:3.11-alpine
+FROM docker.io/python:3.12-alpine
 
 ARG AUTHOR_EMAIL="obriencj@gmail.com"
 ARG GIT_REPO="https://github.com/obriencj/pelican-inelegant.git"
