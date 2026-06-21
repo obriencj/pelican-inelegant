@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
     "@babel/register": "^8.0.1",
     "cssnano": "^8.0.2",
     "gulp": "^5.0.1",
