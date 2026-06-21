@@ -30,7 +30,7 @@ jobs:
           password: ${{ github.token }}
 
       - name: Remove untagged
-        uses: Chizkiyahu/delete-untagged-ghcr-action@v3
+        uses: Chizkiyahu/delete-untagged-ghcr-action@v6
         with:
           token: ${{ github.token }}
           package_name: ${{ env.package }}
