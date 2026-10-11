@@ -105,7 +105,7 @@ pelican-liquid-tags==1.0.4
     # via -r requirements.in
 pelican-series==3.1.1
     # via -r requirements.in
-pelican-yaml-metadata==2.1.2
+pelican-yaml-metadata==2.2.0
     # via -r requirements.in
 pexpect==4.9.0
     # via ipython
