@@ -109,7 +109,7 @@ pelican-yaml-metadata==2.2.0
     # via -r requirements.in
 pexpect==4.9.0
     # via ipython
-pillow==12.3.0
+pillow==13.0.0
     # via pelican-image-process
 platformdirs==4.3.8
     # via jupyter-core
